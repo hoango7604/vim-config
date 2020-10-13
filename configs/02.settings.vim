@@ -5,6 +5,7 @@ syntax on
 set nobackup
 set nowritebackup
 set hidden
+set autoread
 
 " set noshowmatch
 set hlsearch
@@ -24,7 +25,6 @@ set undodir=~/.vim/undodir
 set undofile
 set incsearch
 set termguicolors
-set term=screen-256color
 
 " Give more space for displaying messages.
 set cmdheight=2
@@ -46,14 +46,16 @@ set splitright
 " Using fzf in Vim
 set rtp+=/usr/local/opt/fzf
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("patch-8.1.1564")
-	" Recently vim can merge signcolumn and number column into one
-	set signcolumn=number
-else
-	set signcolumn=yes
-endif
+set signcolumn=no
+
+" " Always show the signcolumn, otherwise it would shift the text each time
+" " diagnostics appear/become resolved.
+" if has("patch-8.1.1564")
+" 	" Recently vim can merge signcolumn and number column into one
+" 	set signcolumn=number
+" else
+" 	set signcolumn=yes
+" endif
 
 " Make sure spacebar doesn't have any mapping before hand
 nnoremap <Space> <Nop>

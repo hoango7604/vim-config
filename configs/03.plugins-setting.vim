@@ -34,9 +34,10 @@ let g:go_auto_sameids = 1
 highlight CocHighlightText guibg=#4f4f4f cterm=bold
 highlight MatchParen guibg=#4f4f4f cterm=bold
 highlight MatchWord guibg=#4f4f4f cterm=bold
-highlight Visual guifg=white guibg=#1b8a4a cterm=bold
-highlight Search guifg=white guibg=#1b8a4a cterm=bold
-highlight EasyMotionMoveHL guifg=white guibg=#1b8a4a cterm=bold
+highlight Visual guifg=white ctermfg=white guibg=#1b8a4a cterm=bold gui=bold
+highlight Search guifg=white ctermfg=white guibg=#1b8a4a cterm=bold gui=bold
+highlight EasyMotionMoveHL guifg=white ctermfg=white guibg=#1b8a4a cterm=bold gui=bold
+highlight link EasyMotionTargetShade Comment
 
 " --- auto sync
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
@@ -140,7 +141,7 @@ nnoremap <leader>xb :Bdelete menu<CR>
 nnoremap <leader>nt :tabnew<CR>
 nnoremap <C-a> :CocList commands<CR>
 nnoremap <leader>bb :Buffers<CR>
-nnoremap <leader>br :bufdo e<CR>
+nnoremap <leader>br :checktime<CR>
 nnoremap <leader>so :set so=0<CR>
 
 " vim-plug

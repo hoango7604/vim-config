@@ -13,11 +13,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-grepper'
 
 Plug 'gruvbox-community/gruvbox'
-Plug 'sainnhe/gruvbox-material'
-Plug 'phanviet/vim-monokai-pro'
 Plug 'vim-airline/vim-airline'
 Plug 'mkitt/tabline.vim'
-Plug 'flazz/vim-colorschemes'
 Plug 'pangloss/vim-javascript'
 
 Plug 'tpope/vim-commentary'
@@ -31,6 +28,7 @@ Plug 'heavenshell/vim-jsdoc', {
 			\ 'do': 'make install'
 			\}
 Plug 'andymass/vim-matchup'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 Plug 'tommcdo/vim-fugitive-blame-ext'
