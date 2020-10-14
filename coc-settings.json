@@ -3,7 +3,8 @@
   "diagnostic.enableSign": true,
   "eslint.autoFix": false,
   "eslint.autoFixOnSave": false,
-  "diagnostic.enableMessage": "jump",
+  "diagnostic.enableMessage": "always",
+  "diagnostic.virtualTextLines": 0,
   "suggest.autoTrigger": "always",
   "suggest.enablePreview": true,
   "suggest.completionItemKindLabels": {

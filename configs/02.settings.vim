@@ -46,7 +46,11 @@ set splitright
 " Using fzf in Vim
 set rtp+=/usr/local/opt/fzf
 
+" Hide annoying left side sign column
 set signcolumn=no
+
+" Keep cursor the same as other modes in insert mode
+set guicursor=
 
 " " Always show the signcolumn, otherwise it would shift the text each time
 " " diagnostics appear/become resolved.

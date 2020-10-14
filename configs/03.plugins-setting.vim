@@ -40,12 +40,17 @@ highlight EasyMotionMoveHL guifg=white ctermfg=white guibg=#1b8a4a cterm=bold gu
 highlight link EasyMotionTargetShade Comment
 
 " --- auto sync
+" styled-components
+" Fix breaking syntax highlighting in very long files
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 " Show NERDTree on vim enter
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Auto reload opened buffers after git checkout
+autocmd FocusGained * :checktime<CR>
 
 " --- Other config
 if executable('rg')
@@ -74,7 +79,7 @@ let g:vimade = {
 			\ 'normalncid': '',
 			\ 'basefg': '',
 			\ 'basebg': '',
-			\ 'fadelevel': 0.4,
+			\ 'fadelevel': 0.5,
 			\ 'colbufsize': 15,
 			\ 'rowbufsize': 15,
 			\ 'checkinterval': 100,
@@ -132,7 +137,7 @@ nnoremap <silent> <leader>= :vertical resize +5<CR>
 nnoremap <silent> <leader>- :vertical resize -5<CR>
 nnoremap <silent> <leader>. :resize +5<CR>
 nnoremap <silent> <leader>, :resize -5<CR>
-nnoremap <leader>ss :so %<CR>
+nnoremap <leader>ss :so ~/.config/nvim/init.vim<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>xo <C-w>o
