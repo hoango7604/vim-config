@@ -79,7 +79,7 @@ let g:vimade = {
 			\ 'normalncid': '',
 			\ 'basefg': '',
 			\ 'basebg': '',
-			\ 'fadelevel': 0.5,
+			\ 'fadelevel': 0.4,
 			\ 'colbufsize': 15,
 			\ 'rowbufsize': 15,
 			\ 'checkinterval': 100,
@@ -205,7 +205,7 @@ endfunction
 nmap <silent> K :call <SID>show_documentation()<CR>
 
 " Scroll when document popup opened by Shift-K
-function FindCursorPopUp()                                                                                                                                                                                            
+function FindCursorPopUp()
 	let radius = get(a:000, 0, 2)
 	let srow = screenrow()
 	let scol = screencol()
@@ -345,12 +345,22 @@ function! s:config_easyfuzzymotion(...) abort
 endfunction
 
 " Use easymotion to replace default search of Vim
-nmap f <Plug>(easymotion-s)
-nmap F <Plug>(easymotion-s)
-nmap s <Plug>(easymotion-s2)
+map f <Plug>(easymotion-s)
+map F <Plug>(easymotion-s)
+map s <Plug>(easymotion-s2)
 nmap * <Plug>(easymotion-sn)<C-r><C-w>
 nmap / <Plug>(easymotion-sn)
 nmap <silent><expr> <leader>/ incsearch#go(<SID>config_easyfuzzymotion())
 nmap <leader><leader>r <Plug>(easymotion-repeat)
 nmap . <Plug>(easymotion-next)zz
 nmap , <Plug>(easymotion-prev)zz
+
+" vim-lsp config for bash language server
+" Ref: https://github.com/bash-lsp/bash-language-server
+if executable('bash-language-server')
+	au User lsp_setup call lsp#register_server({
+				\ 'name': 'bash-language-server',
+				\ 'cmd': {server_info->[&shell, &shellcmdflag, 'bash-language-server start']},
+				\ 'allowlist': ['sh'],
+				\ })
+endif

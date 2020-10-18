@@ -10,7 +10,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'pangloss/vim-javascript'
 " Support writing doc for js file
 Plug 'heavenshell/vim-jsdoc', {
-			\ 'for': ['javascript', 'javascript.jsx','typescript'], 
+			\ 'for': ['javascript', 'javascript.jsx','typescript'],
 			\ 'do': 'make install'
 			\}
 
@@ -71,5 +71,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'mkitt/tabline.vim'
 
 " --- Other plugins
+Plug 'prabirshrestha/vim-lsp'
 
 call plug#end()

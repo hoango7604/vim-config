@@ -11,7 +11,8 @@ set autoread
 " set noshowmatch
 set hlsearch
 set noerrorbells
-set tabstop=2 softtabstop=2
+set tabstop=2
+set softtabstop=2
 set shiftwidth=2
 set expandtab
 set smarttab
@@ -47,20 +48,11 @@ set splitright
 " Using fzf in Vim
 set rtp+=/usr/local/opt/fzf
 
-" Hide annoying left side sign column
-set signcolumn=no
+" Show signcolumn for alerting error lines
+set signcolumn=yes
 
 " Keep cursor the same as other modes in insert mode
 set guicursor=
-
-" " Always show the signcolumn, otherwise it would shift the text each time
-" " diagnostics appear/become resolved.
-" if has("patch-8.1.1564")
-" 	" Recently vim can merge signcolumn and number column into one
-" 	set signcolumn=number
-" else
-" 	set signcolumn=yes
-" endif
 
 " Make sure spacebar doesn't have any mapping before hand
 nnoremap <Space> <Nop>
