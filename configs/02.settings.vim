@@ -1,4 +1,3 @@
-filetype plugin indent on
 syntax on
 
 " --- Settings
@@ -26,7 +25,14 @@ set noswapfile
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
+set cursorline
 set termguicolors
+
+" Display indentation
+set list lcs=tab:\¦\ 
+
+" Using dark theme
+set background=dark
 
 " Give more space for displaying messages.
 set cmdheight=2
