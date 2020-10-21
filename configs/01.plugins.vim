@@ -1,18 +1,5 @@
-syntax on
-
 " --- Plugins
 call plug#begin('~/.vim/plugged')
-
-" --- Plugins for language support
-" Collection of language pack
-Plug 'sheerun/vim-polyglot'
-" Support javascript syntax highlighting and autosuggest
-Plug 'pangloss/vim-javascript'
-" Support writing doc for js file
-Plug 'heavenshell/vim-jsdoc', {
-			\ 'for': ['javascript', 'javascript.jsx','typescript'],
-			\ 'do': 'make install'
-			\}
 
 " --- Plugins for editors (IDE)
 " Intellisense engine, full language server protocol support as VSCode
@@ -69,8 +56,23 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'vim-airline/vim-airline'
 " Tab bar
 Plug 'mkitt/tabline.vim'
+" Display colours prettier than default
+Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+" Highlight indent levels
+Plug 'Yggdroot/indentLine'
 
 " --- Other plugins
 Plug 'prabirshrestha/vim-lsp'
+
+" --- Plugins for language support
+" Collection of language pack
+Plug 'sheerun/vim-polyglot'
+" Support javascript syntax highlighting and autosuggestion
+Plug 'pangloss/vim-javascript'
+" Support writing doc for js file
+Plug 'heavenshell/vim-jsdoc', {
+      \ 'for': ['javascript', 'javascript.jsx','typescript'],
+      \ 'do': 'make install'
+      \}
 
 call plug#end()
