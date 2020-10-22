@@ -28,6 +28,9 @@ set incsearch
 set cursorline
 set termguicolors
 
+" Using UTF-8 for typing
+set encoding=utf-8
+
 " Display indentation
 set list lcs=tab:\¦\ 
 
@@ -93,9 +96,6 @@ inoremap <C-j> <down>
 
 " Replace text
 nnoremap <leader>r :%s///gc<left><left><left>
-
-" Break line with commas into multiple lines
-nnoremap <leader>m :s/\((\zs\\|{\ *\zs\\|,\ *\zs\\|)\\|\ *}\)/\r&/g<CR><Bar>:'[,']normal ==<CR>
 
 " Keep in visual mode after change indent
 vnoremap < <gv

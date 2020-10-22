@@ -48,6 +48,8 @@ Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 " Disable search highlighting when done searching and re-enable when search again
 Plug 'romainl/vim-cool'
+" Split join line/multiple lines
+Plug 'AndrewRadev/splitjoin.vim'
 
 " --- Plugins for theme and status line
 " Grubbox theme
@@ -74,5 +76,7 @@ Plug 'heavenshell/vim-jsdoc', {
       \ 'for': ['javascript', 'javascript.jsx','typescript'],
       \ 'do': 'make install'
       \}
+" Jsx prettier
+Plug 'maxmellon/vim-jsx-pretty'
 
 call plug#end()

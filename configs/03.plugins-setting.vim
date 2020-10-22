@@ -38,6 +38,7 @@ highlight MatchWord guibg=#4f4f4f cterm=bold
 highlight Visual guifg=white ctermfg=white guibg=#1b8a4a cterm=bold gui=bold
 highlight Search guifg=white ctermfg=white guibg=#1b8a4a cterm=bold gui=bold
 highlight EasyMotionMoveHL guifg=white ctermfg=white guibg=#1b8a4a cterm=bold gui=bold
+highlight EasyMotionTarget2Second guifg=#1b8a4a
 highlight link EasyMotionShade Comment
 
 " --- Other config
@@ -353,6 +354,9 @@ let g:vimade = {
       \ 'enablebasegroups': 1,
       \ 'basegroups': ['Folded', 'Search', 'SignColumn', 'LineNr', 'CursorLine', 'CursorLineNr', 'DiffAdd', 'DiffChange', 'DiffDelete', 'DiffText', 'FoldColumn', 'Whitespace'],
       \ }
+
+" Add trailing comma after split
+let g:splitjoin_trailing_comma = 1
 
 " --- Auto command
 " styled-components
