@@ -1,13 +1,15 @@
 " --- color theme
-
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 let g:gruvbox_invert_selection = '0'
-let g:gruvbox_contrast_dark = 'medium'
+let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_sign_column = 'bg0'
+
+" vim-airline
 let g:airline_theme = 'gruvbox'
+let g:airline_powerline_fonts = 1
 
 " All settings must go before this command
 colorscheme gruvbox
@@ -194,7 +196,6 @@ nnoremap <expr> <c-k> ScrollPopUp(0) ? '<esc>' : '<c-k>'
 nnoremap <leader>gi :diffget REMOTE<Bar>diffupdate<CR>
 nnoremap <leader>gc :diffget LOCAL<Bar>diffupdate<CR>
 nnoremap <leader>gb :/>>>>>>>/;?<<<<<<<?,.g/^\(<<<<<<<\\|=======\\|>>>>>>>\)/d<CR>
-nnoremap <leader>gs :G<CR>
 
 " --- Search for selected text, forwards or backwards.
 " Press * to search forwards or # to search backwards
@@ -299,8 +300,10 @@ function! s:config_easyfuzzymotion(...) abort
 endfunction
 
 " Use easymotion to replace default search of Vim
-map f <Plug>(easymotion-s)
-map F <Plug>(easymotion-s)
+map f <Plug>(easymotion-bd-f)
+map F <Plug>(easymotion-bd-f)
+map t <Plug>(easymotion-bd-t)
+map T <Plug>(easymotion-bd-t)
 map s <Plug>(easymotion-s2)
 nmap * <Plug>(easymotion-sn)<C-r><C-w>
 nmap / <Plug>(easymotion-sn)
@@ -320,7 +323,11 @@ if executable('bash-language-server')
 endif
 
 " hexokinase-highlighters
-let g:Hexokinase_highlighters = ['foregroundfull']
+if has('nvim')
+  let g:Hexokinase_highlighters = ['virtual']
+else
+  let g:Hexokinase_highlighters = ['signcolumn']
+endif
 
 " indent line
 let g:indentLine_char = '¦'
@@ -337,9 +344,9 @@ let g:vimade = {
       \ 'basefg': '',
       \ 'basebg': '',
       \ 'fadelevel': 0.4,
+      \ 'checkinterval': 100,
       \ 'colbufsize': 15,
       \ 'rowbufsize': 15,
-      \ 'checkinterval': 100,
       \ 'usecursorhold': 0,
       \ 'detecttermcolors': 0,
       \ 'enablescroll': 1,
@@ -355,8 +362,17 @@ let g:vimade = {
       \ 'basegroups': ['Folded', 'Search', 'SignColumn', 'LineNr', 'CursorLine', 'CursorLineNr', 'DiffAdd', 'DiffChange', 'DiffDelete', 'DiffText', 'FoldColumn', 'Whitespace'],
       \ }
 
+" Remapping splitjoin.vim
+let g:splitjoin_split_mapping = ''
+let g:splitjoin_join_mapping = ''
+nmap <leader>gs :SplitjoinSplit<CR>
+nmap <leader>gj :SplitjoinJoin<CR>
+
 " Add trailing comma after split
 let g:splitjoin_trailing_comma = 1
+
+" vim-maximizer
+nmap <leader>z :MaximizerToggle!<CR>
 
 " --- Auto command
 " styled-components
@@ -368,9 +384,11 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-" Auto reload opened buffers after git checkout
-autocmd FocusGained * :checktime<CR>
-
 " Lessen the redraw effect when content changed among buffers with vimade
 " Ref: https://github.com/TaDaa/vimade#faqhelp
 autocmd! CompleteChanged * redraw
+
+" Auto set filetype to javascriptreact if js file is open
+" (For better compitable with js plugins)
+autocmd BufRead,BufNewFile *.js set filetype=javascriptreact
+autocmd BufRead,BufNewFile *.ts set filetype=typescriptreact

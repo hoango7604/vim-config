@@ -1,3 +1,10 @@
+" Forget compatibility with Vi. Who cares.
+set nocompatible
+
+" Enable filetypes
+filetype on
+filetype plugin on
+filetype indent on
 syntax on
 
 " --- Settings
@@ -25,11 +32,14 @@ set noswapfile
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
-set cursorline
 set termguicolors
 
+set showtabline=2
+
 " Using UTF-8 for typing
+scriptencoding utf-8
 set encoding=utf-8
+set fileencoding=utf-8
 
 " Display indentation
 set list lcs=tab:\¦\ 
@@ -53,6 +63,10 @@ set updatetime=300
 " Set pane position when splitted
 set splitbelow
 set splitright
+
+" Set allowed minimum width and height
+set winwidth=1
+set winminwidth=0
 
 " Using fzf in Vim
 set rtp+=/usr/local/opt/fzf

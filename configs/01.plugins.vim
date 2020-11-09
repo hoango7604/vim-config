@@ -50,10 +50,14 @@ Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'romainl/vim-cool'
 " Split join line/multiple lines
 Plug 'AndrewRadev/splitjoin.vim'
+" Maximize working buffer
+Plug 'szw/vim-maximizer'
 
 " --- Plugins for theme and status line
 " Grubbox theme
 Plug 'gruvbox-community/gruvbox'
+" Modification of gruvbox theme to make color scheme smoothier
+Plug 'sainnhe/gruvbox-material'
 " Status bar
 Plug 'vim-airline/vim-airline'
 " Tab bar
@@ -64,7 +68,10 @@ Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'Yggdroot/indentLine'
 
 " --- Other plugins
+" Language server protocol for vim language
 Plug 'prabirshrestha/vim-lsp'
+" Support session in vim
+Plug 'tpope/vim-obsession'
 
 " --- Plugins for language support
 " Collection of language pack
@@ -78,5 +85,7 @@ Plug 'heavenshell/vim-jsdoc', {
       \}
 " Jsx prettier
 Plug 'maxmellon/vim-jsx-pretty'
+" JSON syntax
+Plug 'kevinoid/vim-jsonc'
 
 call plug#end()
