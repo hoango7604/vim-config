@@ -1,4 +1,4 @@
-" --- Plugins
+" " --- Plugins
 call plug#begin('~/.vim/plugged')
 
 " --- Plugins for editors (IDE)
@@ -80,7 +80,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'pangloss/vim-javascript'
 " Support writing doc for js file
 Plug 'heavenshell/vim-jsdoc', {
-      \ 'for': ['javascript', 'javascript.jsx','typescript'],
+      \ 'for': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'],
       \ 'do': 'make install'
       \}
 " Jsx prettier

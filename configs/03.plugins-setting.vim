@@ -55,7 +55,7 @@ let g:vrfr_rg = 'true'
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
 
-let g:closetag_filetypes = 'html,javascript,jsx'
+let g:closetag_filetypes = 'html,javascript,jsx,typescript,tsx'
 let g:closetag_close_shortcut = '@>'
 
 " --- NERDTree config
@@ -114,7 +114,7 @@ nnoremap <leader>nt :tabnew<CR>
 nnoremap <C-a> :CocList commands<CR>
 nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>br :checktime<CR>
-nnoremap <leader>so :set so=0<CR>
+nnoremap <leader>so :set so=10<CR>
 
 " vim-plug
 nnoremap <leader>in :PlugInstall<CR>
@@ -215,8 +215,6 @@ command! -nargs=* AgQ call fzf#vim#ag(<q-args>, {'down': '40%', 'options': '-q '
 
 " --- vim-windowswap plugin key bindings
 let g:windowswap_map_keys = 0 "prevent default bindings
-nnoremap <silent> <leader>sy :call WindowSwap#MarkWindowSwap()<CR>
-nnoremap <silent> <leader>sp :call WindowSwap#DoWindowSwap()<CR>
 nnoremap <silent> <leader>sw :call WindowSwap#EasyWindowSwap()<CR>
 
 " --- Switch to previous active tab
@@ -392,3 +390,6 @@ autocmd! CompleteChanged * redraw
 " (For better compitable with js plugins)
 autocmd BufRead,BufNewFile *.js set filetype=javascriptreact
 autocmd BufRead,BufNewFile *.ts set filetype=typescriptreact
+
+" Show filename whenever enter new buffer
+autocmd! BufEnter * echo @%

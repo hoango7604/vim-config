@@ -67,6 +67,7 @@ set splitright
 " Set allowed minimum width and height
 set winwidth=1
 set winminwidth=0
+set winminheight=0
 
 " Using fzf in Vim
 set rtp+=/usr/local/opt/fzf
@@ -76,6 +77,9 @@ set signcolumn=yes
 
 " Keep cursor the same as other modes in insert mode
 set guicursor=
+
+" Set scroll offset
+set scrolloff=10
 
 " Make sure spacebar doesn't have any mapping before hand
 nnoremap <Space> <Nop>
@@ -124,6 +128,10 @@ nnoremap <leader>h <C-W>h
 nnoremap <leader>j <C-W>j
 nnoremap <leader>k <C-W>k
 nnoremap <leader>l <C-W>l
+nnoremap <leader>H <C-W>H
+nnoremap <leader>J <C-W>J
+nnoremap <leader>K <C-W>K
+nnoremap <leader>L <C-W>L
 nnoremap <leader>y "*y
 nnoremap <leader>p "*p<Bar>:'[,']normal ==<CR>
 nnoremap <leader>Y "+y
@@ -138,3 +146,9 @@ vnoremap p p<Bar>:'[,']normal ==<CR>
 " Move selecting lines up & down
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
+" Only show filename when pressing <C-g>
+nnoremap <C-g> :echo @%<CR>
+
+" Maaping for 'paste' option
+nnoremap <silent> <leader>sp :if &paste <Bar> set nopaste <Bar> else <Bar> set paste <Bar> endif <CR>
