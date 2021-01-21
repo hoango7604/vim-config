@@ -34,12 +34,8 @@ set undofile
 set incsearch
 set termguicolors
 
+" Always show tabline
 set showtabline=2
-
-" Using UTF-8 for typing
-scriptencoding utf-8
-set encoding=utf-8
-set fileencoding=utf-8
 
 " Display indentation
 set list lcs=tab:\¦\ 
