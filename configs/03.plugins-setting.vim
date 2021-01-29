@@ -126,21 +126,21 @@ nnoremap <silent> <leader>th :tabmove -1<CR>
 nnoremap <silent> <leader>tl :tabmove +1<CR>
 
 " GoTo code navigation.
-nmap <silent> <leader>gd <Plug>(coc-definition)zz
-nmap <silent> <leader>gx :sp<CR><Plug>(coc-definition)zz
-nmap <silent> <leader>gv :vsp<CR><Plug>(coc-definition)zz
-nmap <silent> <leader>gt :vsp<CR><Plug>(coc-definition)<C-W>Tzz
-nmap <silent> <leader>gy <Plug>(coc-type-definition)
-nmap <silent> <leader>gm <Plug>(coc-implementation)
-nmap <silent> <leader>ge <Plug>(coc-references)
-nmap <silent> <leader>gr <Plug>(coc-rename)
-nmap <silent> <leader>g[ <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>gd <plug>(coc-definition)zz
+nmap <silent> <leader>gx :sp<CR><plug>(coc-definition)zz
+nmap <silent> <leader>gv :vsp<CR><plug>(coc-definition)zz
+nmap <silent> <leader>gt :vsp<CR><plug>(coc-definition)<C-W>Tzz
+nmap <silent> <leader>gy <plug>(coc-type-definition)
+nmap <silent> <leader>gm <plug>(coc-implementation)
+nmap <silent> <leader>ge <plug>(coc-references)
+nmap <silent> <leader>gr <plug>(coc-rename)
+nmap <silent> <leader>g[ <plug>(coc-diagnostic-prev)
 nmap <silent> <leader>gl :<C-u>CocList diagnostics<CR>
-nmap <silent> <leader>g] <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev-error)
-nmap <silent> <leader>gn <Plug>(coc-diagnostic-next-error)
+nmap <silent> <leader>g] <plug>(coc-diagnostic-next)
+nmap <silent> <leader>gp <plug>(coc-diagnostic-prev-error)
+nmap <silent> <leader>gn <plug>(coc-diagnostic-next-error)
 nmap <leader>cr :CocRestart<Cr>
-nmap <leader>a <Plug>(coc-codeaction)
+nmap <leader>a <plug>(coc-codeaction)
 
 " --- Autolint command
 command! -nargs=0 ExecuteAutoLint
@@ -231,23 +231,24 @@ nnoremap <silent> <leader>d :JsDoc<CR>
 let g:grepper={}
 let g:grepper.tools=["rg"]
 
-xnoremap gr <Plug>(GrepperOperation)
+nmap <leader>go <plug>(GrepperOperator)
+xmap <leader>go <plug>(GrepperOperator)
 
-" After searching for text, press this mapping to do a project wide find and
-" replace. It's similar to <leader>r except this one applies to all matches
+" Find and replace all text under the cursor. It's similar to <leader>r
+" except this one applies to all matches
 " across all files instead of just the current file.
-nnoremap <leader>R
+nmap <leader>R
       \ :let @s='\<'.expand('<cword>').'\>'<CR>
       \ :Grepper -cword -noprompt<CR>
       \ :cfdo %s/<C-r>s//g \| update
-      \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+      \ <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 " The same as above except it works with a visual selection.
-xnoremap <leader>R
+xmap <leader>R
       \ "sy
-      \ gvgr
+      \ v_gv<leader>go
       \ :cfdo %s/<C-r>s//g \| update
-      \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+      \ <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 " --- [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
@@ -298,17 +299,17 @@ function! s:config_easyfuzzymotion(...) abort
 endfunction
 
 " Use easymotion to replace default search of Vim
-map f <Plug>(easymotion-bd-f)
-map F <Plug>(easymotion-bd-f)
-map t <Plug>(easymotion-bd-t)
-map T <Plug>(easymotion-bd-t)
-map s <Plug>(easymotion-s2)
-nmap * <Plug>(easymotion-sn)<C-r><C-w>
-nmap / <Plug>(easymotion-sn)
+map f <plug>(easymotion-bd-f)
+map F <plug>(easymotion-bd-f)
+map t <plug>(easymotion-bd-t)
+map T <plug>(easymotion-bd-t)
+map s <plug>(easymotion-s2)
+nmap * <plug>(easymotion-sn)<C-r><C-w>
+nmap / <plug>(easymotion-sn)
 nmap <silent><expr> <leader>/ incsearch#go(<SID>config_easyfuzzymotion())
-nmap <leader><leader>r <Plug>(easymotion-repeat)
-nmap . <Plug>(easymotion-next)zz
-nmap , <Plug>(easymotion-prev)zz
+nmap <leader><leader>r <plug>(easymotion-repeat)
+nmap . <plug>(easymotion-next)zz
+nmap , <plug>(easymotion-prev)zz
 
 " vim-lsp config for bash language server
 " Ref: https://github.com/bash-lsp/bash-language-server
