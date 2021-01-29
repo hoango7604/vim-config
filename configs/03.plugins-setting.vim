@@ -241,14 +241,14 @@ nmap <leader>R
       \ :let @s='\<'.expand('<cword>').'\>'<CR>
       \ :Grepper -cword -noprompt<CR>
       \ :cfdo %s/<C-r>s//g \| update
-      \ <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+      \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 " The same as above except it works with a visual selection.
 xmap <leader>R
       \ "sy
       \ v_gv<leader>go
       \ :cfdo %s/<C-r>s//g \| update
-      \ <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+      \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
 " --- [Buffers] Jump to the existing window if possible
 let g:fzf_buffers_jump = 1
@@ -330,6 +330,8 @@ endif
 
 " indent line
 let g:indentLine_char = '¦'
+" Disable url folding in markdown file
+let g:indentLine_setConceal = 0
 
 " Output the current syntax group
 nnoremap <f10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
