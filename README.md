@@ -25,6 +25,7 @@ Open .vimrc file, paste this content into it and then save:
 " Every configs is stored at ~/.config/nvim/init.vim
 source ~/.config/nvim/init.vim
 ```
+![vimrc-content](./screenshots/vimrc-content.png)
 
 ### INSTALLATION
 Clone this project into $HOME/.config/nvim directory:
