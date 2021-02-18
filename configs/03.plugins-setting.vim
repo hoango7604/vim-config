@@ -95,11 +95,10 @@ endif
 " Shortkey for plugins operations on buffer
 nnoremap <silent> <leader>un :UndotreeShow<CR>
 nnoremap <silent> <C-b> :NERDTreeToggle<CR>
-nnoremap <silent> <leader>f :NERDTreeFind<CR>
-nnoremap <C-f> :Rg<SPACE>
-nnoremap <C-p> :GFiles<CR>
+nnoremap <silent> <C-f> :NERDTreeFind<CR>
 nnoremap <leader>gg :Gblame<CR>
 nnoremap <leader>o :Files<CR>
+nnoremap <leader>O :GFiles<CR>
 nnoremap <silent> <leader>= :vertical resize +5<CR>
 nnoremap <silent> <leader>- :vertical resize -5<CR>
 nnoremap <silent> <leader>. :resize +5<CR>
@@ -141,6 +140,13 @@ nmap <silent> <leader>gp <plug>(coc-diagnostic-prev-error)
 nmap <silent> <leader>gn <plug>(coc-diagnostic-next-error)
 nmap <leader>cr :CocRestart<Cr>
 nmap <leader>a <plug>(coc-codeaction)
+
+" Search among files with the matching phrase
+nnoremap <leader>f :Rg<Space>
+" The same as above except it works with a visual selection.
+xmap <leader>f
+      \ "sy
+      \ :Rg <C-r>s<CR>
 
 " --- Autolint command
 command! -nargs=0 ExecuteAutoLint
