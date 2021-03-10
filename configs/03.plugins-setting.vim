@@ -25,6 +25,7 @@ highlight Visual guifg=white ctermfg=white guibg=#1b8a4a cterm=bold gui=bold
 highlight Search guifg=white ctermfg=white guibg=#1b8a4a cterm=bold gui=bold
 highlight EasyMotionMoveHL guifg=white ctermfg=white guibg=#1b8a4a cterm=bold gui=bold
 highlight EasyMotionTarget2Second guifg=#1b8a4a
+highlight link EasyMotionTarget EasyMotionTarget2First
 highlight link EasyMotionShade Comment
 
 " --- Other config
@@ -89,7 +90,6 @@ nnoremap <silent> <leader>- :vertical resize -5<CR>
 nnoremap <silent> <leader>. :resize +5<CR>
 nnoremap <silent> <leader>, :resize -5<CR>
 nnoremap <leader>ss :so ~/.config/nvim/init.vim<Bar>VimadeRedraw<CR>
-" nnoremap <leader>ss :so ~/.config/nvim/init.vim<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>xo <C-w>o

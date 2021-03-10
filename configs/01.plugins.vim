@@ -54,6 +54,8 @@ Plug 'romainl/vim-cool'
 Plug 'AndrewRadev/splitjoin.vim'
 " Maximize working buffer
 Plug 'szw/vim-maximizer'
+" Vim plugin to use Tig as git client
+Plug 'iberianpig/tig-explorer.vim'
 
 " --- Plugins for theme and status line
 " Grubbox theme
