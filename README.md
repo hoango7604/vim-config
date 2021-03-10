@@ -9,7 +9,7 @@
 #### Full combination (recommended):
 Clone [hoango7604/dotfiles](https://github.com/hoango7604/dotfiles) to your $HOME directory:
 ```
-git pull git@github.com:hoango7604/dotfiles.git
+git clone git@github.com:hoango7604/dotfiles.git ~/dotfiles
 ```
 
 Follow the installation instruction from dotfiles project.
@@ -30,7 +30,7 @@ source ~/.config/nvim/init.vim
 ### INSTALLATION
 Clone this project into $HOME/.config/nvim directory:
 ```
-git pull git@github.com:hoango7604/vim-config.git ~/.config/nvim
+git clone git@github.com:hoango7604/vim-config.git ~/.config/nvim
 ```
 
 Install [Vim Plugin Manager](https://github.com/junegunn/vim-plug):
