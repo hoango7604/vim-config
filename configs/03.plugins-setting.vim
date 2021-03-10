@@ -89,6 +89,7 @@ nnoremap <silent> <leader>- :vertical resize -5<CR>
 nnoremap <silent> <leader>. :resize +5<CR>
 nnoremap <silent> <leader>, :resize -5<CR>
 nnoremap <leader>ss :so ~/.config/nvim/init.vim<Bar>VimadeRedraw<CR>
+" nnoremap <leader>ss :so ~/.config/nvim/init.vim<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>xo <C-w>o
@@ -343,7 +344,7 @@ let g:vimade = {
       \ 'checkinterval': 100,
       \ 'colbufsize': 15,
       \ 'rowbufsize': 15,
-      \ 'usecursorhold': 0,
+      \ 'usecursorhold': 1,
       \ 'detecttermcolors': 0,
       \ 'enablescroll': 1,
       \ 'enablesigns': 1,
@@ -353,7 +354,7 @@ let g:vimade = {
       \ 'fadepriority': 10,
       \ 'groupdiff': 1,
       \ 'groupscrollbind': 0,
-      \ 'enablefocusfading': 0,
+      \ 'enablefocusfading': 1,
       \ 'enablebasegroups': 1,
       \ 'basegroups': ['Folded', 'Search', 'SignColumn', 'LineNr', 'CursorLine', 'CursorLineNr', 'DiffAdd', 'DiffChange', 'DiffDelete', 'DiffText', 'FoldColumn', 'Whitespace'],
       \ }
@@ -395,7 +396,3 @@ autocmd! BufEnter * echo @%
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
       \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
-" Fade vim in tmux pane whenever lose focus and unfade when gain focus
-autocmd! FocusLost * VimadeFadeActive
-autocmd! FocusGained * VimadeUnfadeActive
