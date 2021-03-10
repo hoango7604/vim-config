@@ -30,6 +30,8 @@ Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
 " Fade inactive buffers text to help focus on currently working buffer
 Plug 'TaDaa/vimade'
+" Enhance vim FocusGained and FocusLost events for autocommand
+Plug 'tmux-plugins/vim-tmux-focus-events'
 " Auto close XHTML tag
 Plug 'alvan/vim-closetag'
 " Smart compose for code completion
@@ -77,7 +79,7 @@ Plug 'tpope/vim-obsession'
 " Collection of language pack
 Plug 'sheerun/vim-polyglot'
 " Support javascript syntax highlighting and autosuggestion
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
 " Support writing doc for js file
 Plug 'heavenshell/vim-jsdoc', {
       \ 'for': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'],

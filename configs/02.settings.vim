@@ -61,7 +61,6 @@ set splitbelow
 set splitright
 
 " Set allowed minimum width and height
-set winwidth=1
 set winminwidth=0
 set winminheight=0
 
@@ -138,6 +137,10 @@ vnoremap <leader>p "*p<Bar>:'[,']normal ==<CR>
 vnoremap <leader>Y "+y
 vnoremap <leader>P "+p<Bar>:'[,']normal ==<CR>
 vnoremap p p<Bar>:'[,']normal ==<CR>
+
+" Search result should be scrolled to middle of the screen
+nnoremap n nzz
+nnoremap N Nzz
 
 " Move selecting lines up & down
 vnoremap J :m '>+1<CR>gv=gv

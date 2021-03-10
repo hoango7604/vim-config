@@ -17,22 +17,6 @@ colorscheme gruvbox
 " Disable matchit and matchparen before using matchup
 let g:loaded_matchit = 1
 
-" --- vim go (polyglot) settings.
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_types = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_format_strings = 1
-let g:go_highlight_variable_declarations = 1
-let g:go_auto_sameids = 1
-
 " --- Customize highlight color
 highlight CocHighlightText guibg=#4f4f4f cterm=bold
 highlight MatchParen guibg=#4f4f4f cterm=bold
@@ -96,6 +80,7 @@ endif
 nnoremap <silent> <leader>un :UndotreeShow<CR>
 nnoremap <silent> <C-b> :NERDTreeToggle<CR>
 nnoremap <silent> <C-f> :NERDTreeFind<CR>
+nnoremap <silent> <leader>bs :NERDTreeFocus<CR>
 nnoremap <leader>gg :Gblame<CR>
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>O :GFiles<CR>
@@ -145,8 +130,10 @@ nmap <leader>a <plug>(coc-codeaction)
 nnoremap <leader>f :Rg<Space>
 " The same as above except it works with a visual selection.
 xmap <leader>f
-      \ "sy
-      \ :Rg <C-r>s<CR>
+      \ "fy
+      \ :Rg <C-r>f<CR>
+" Open recent search popup
+nnoremap <leader>F :Rg <C-r>f<CR>
 
 " --- Autolint command
 command! -nargs=0 ExecuteAutoLint
@@ -216,9 +203,6 @@ vnoremap <silent> # :<C-U>
       \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
       \gVzv:call setreg('"', old_reg, old_regtype)<CR>
 
-" --- Fzf history
-command! -nargs=* AgQ call fzf#vim#ag(<q-args>, {'down': '40%', 'options': '-q '.shellescape(<q-args>.' ')})
-
 " --- vim-windowswap plugin key bindings
 let g:windowswap_map_keys = 0 "prevent default bindings
 nnoremap <silent> <leader>sw :call WindowSwap#EasyWindowSwap()<CR>
@@ -282,6 +266,8 @@ nnoremap <leader>bf :Fold<CR>
 let g:EasyMotion_use_upper = 1
 " Use `l` and match `l` and `L`
 let g:EasyMotion_smartcase = 1
+" Scroll off search result to be centered
+let g:EasyMotion_off_screen_search = 999
 
 " incsearch.vim x vim-easymotion
 function! s:incsearch_config(...) abort
@@ -311,6 +297,9 @@ map t <plug>(easymotion-bd-t)
 map T <plug>(easymotion-bd-t)
 map s <plug>(easymotion-s2)
 nmap * <plug>(easymotion-sn)<C-r><C-w>
+xmap *
+      \ "sy
+      \ <plug>(easymotion-sn)<C-r>s
 nmap / <plug>(easymotion-sn)
 nmap <silent><expr> <leader>/ incsearch#go(<SID>config_easyfuzzymotion())
 nmap <leader><leader>r <plug>(easymotion-repeat)
@@ -402,3 +391,11 @@ autocmd BufRead,BufNewFile *.ts set filetype=typescriptreact
 
 " Show filename whenever enter new buffer
 autocmd! BufEnter * echo @%
+
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+      \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+" Fade vim in tmux pane whenever lose focus and unfade when gain focus
+autocmd! FocusLost * VimadeFadeActive
+autocmd! FocusGained * VimadeUnfadeActive
