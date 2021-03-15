@@ -110,7 +110,7 @@ nnoremap <leader>up :PlugUpdate<CR>
 nnoremap <silent> <leader>th :tabmove -1<CR>
 nnoremap <silent> <leader>tl :tabmove +1<CR>
 
-" GoTo code navigation.
+" coc.nvim remappings
 nmap <silent> <leader>gd <plug>(coc-definition)zz
 nmap <silent> <leader>gx :sp<CR><plug>(coc-definition)zz
 nmap <silent> <leader>gv :vsp<CR><plug>(coc-definition)zz
@@ -126,6 +126,20 @@ nmap <silent> <leader>gp <plug>(coc-diagnostic-prev-error)
 nmap <silent> <leader>gn <plug>(coc-diagnostic-next-error)
 nmap <leader>cr :CocRestart<Cr>
 nmap <leader>a <plug>(coc-codeaction)
+
+" coc.nvim extensions list
+let g:coc_global_extensions = [
+      \ 'coc-vimlsp',
+      \ 'coc-highlight',
+      \ 'coc-eslint',
+      \ 'coc-tsserver',
+      \ 'coc-sh',
+      \ 'coc-omnisharp',
+      \ 'coc-json',
+      \ 'coc-html',
+      \ 'coc-css',
+      \ 'coc-git'
+      \ ]
 
 " Search among files with the matching phrase
 nnoremap <leader>f :Rg<Space>
@@ -183,6 +197,7 @@ function ScrollPopUp(down)
 
   return 1
 endfunction
+
 nnoremap <expr> <c-j> ScrollPopUp(1) ? '<esc>' : '<c-j>'
 nnoremap <expr> <c-k> ScrollPopUp(0) ? '<esc>' : '<c-k>'
 
@@ -359,6 +374,11 @@ let g:vimade = {
       \ 'basegroups': ['Folded', 'Search', 'SignColumn', 'LineNr', 'CursorLine', 'CursorLineNr', 'DiffAdd', 'DiffChange', 'DiffDelete', 'DiffText', 'FoldColumn', 'Whitespace'],
       \ }
 
+" Enhancement for FocusGained & FocusLost events in vimade
+if has('gui_running') == 0 && has('nvim') == 0
+  call feedkeys(":silent execute '!' | redraw!\<CR>")
+endif
+
 " Remapping splitjoin.vim
 let g:splitjoin_split_mapping = ''
 let g:splitjoin_join_mapping = ''
@@ -370,6 +390,9 @@ let g:splitjoin_trailing_comma = 1
 
 " vim-maximizer
 nmap <leader>z :MaximizerToggle!<CR>
+
+" vimspector package for debugging
+let g:vimspector_install_gadgets = [ 'vscode-node-debug2', 'debugger-for-chrome' ]
 
 " --- Auto command
 " styled-components
@@ -396,3 +419,9 @@ autocmd! BufEnter * echo @%
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
       \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+" Temporarily disable coc lsp when using easymotion due to some `bugs` in
+" EasyMotion library
+" Ref: https://github.com/easymotion/vim-easymotion/pull/440#issuecomment-727844125
+autocmd User EasyMotionPromptBegin silent! CocDisable
+autocmd User EasyMotionPromptEnd silent! CocEnable

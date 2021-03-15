@@ -70,8 +70,8 @@ set rtp+=/usr/local/opt/fzf
 " Show signcolumn for alerting error lines
 set signcolumn=yes
 
-" Keep cursor the same as other modes in insert mode
-set guicursor=
+" Disable blinking cursor (in macvim)
+set guicursor+=a:blinkon0
 
 " Set scroll offset
 set scrolloff=10

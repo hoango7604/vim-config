@@ -76,6 +76,8 @@ Plug 'Yggdroot/indentLine'
 Plug 'prabirshrestha/vim-lsp'
 " Support session in vim
 Plug 'tpope/vim-obsession'
+" Inspector in vim
+Plug 'puremourning/vimspector'
 
 " --- Plugins for language support
 " Collection of language pack
