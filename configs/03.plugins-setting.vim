@@ -392,7 +392,10 @@ let g:splitjoin_trailing_comma = 1
 nmap <leader>z :MaximizerToggle!<CR>
 
 " vimspector package for debugging
-let g:vimspector_install_gadgets = [ 'vscode-node-debug2', 'debugger-for-chrome' ]
+let g:vimspector_install_gadgets = [
+      \ 'vscode-node-debug2',
+      \ 'debugger-for-chrome'
+      \ ]
 
 " --- Auto command
 " styled-components
@@ -419,9 +422,3 @@ autocmd! BufEnter * echo @%
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
       \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
-" Temporarily disable coc lsp when using easymotion due to some `bugs` in
-" EasyMotion library
-" Ref: https://github.com/easymotion/vim-easymotion/pull/440#issuecomment-727844125
-autocmd User EasyMotionPromptBegin silent! CocDisable
-autocmd User EasyMotionPromptEnd silent! CocEnable
