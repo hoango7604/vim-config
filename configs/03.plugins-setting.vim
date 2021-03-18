@@ -397,6 +397,10 @@ let g:vimspector_install_gadgets = [
       \ 'debugger-for-chrome'
       \ ]
 
+nmap <silent> <leader>G :Flog<CR>
+nmap <silent> <leader>S :Gstatus<CR>
+nmap <silent> yg <Plug>(FlogYank)
+
 " --- Auto command
 " styled-components
 " Fix breaking syntax highlighting in very long files

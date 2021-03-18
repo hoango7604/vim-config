@@ -10,6 +10,8 @@ Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 " Extension for vim-fugitive to show commit message directly
 Plug 'tommcdo/vim-fugitive-blame-ext'
+" Git branch viewer integrates with fugitive
+Plug 'rbong/vim-flog'
 " Undotree
 Plug 'mbbill/undotree'
 " Support action on project (find text in files, open files, etc.)
@@ -54,8 +56,6 @@ Plug 'romainl/vim-cool'
 Plug 'AndrewRadev/splitjoin.vim'
 " Maximize working buffer
 Plug 'szw/vim-maximizer'
-" Vim plugin to use Tig as git client
-Plug 'iberianpig/tig-explorer.vim'
 
 " --- Plugins for theme and status line
 " Grubbox theme

@@ -76,6 +76,9 @@ set guicursor+=a:blinkon0
 " Set scroll offset
 set scrolloff=10
 
+" Open git diff in vertical splits
+set diffopt+=vertical
+
 " Make sure spacebar doesn't have any mapping before hand
 nnoremap <Space> <Nop>
 let mapleader = " "
