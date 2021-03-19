@@ -80,7 +80,6 @@ endif
 " Shortkey for plugins operations on buffer
 nnoremap <silent> <leader>un :UndotreeShow<CR>
 nnoremap <silent> <C-b> :NERDTreeToggle<CR>
-nnoremap <silent> <C-f> :NERDTreeFind<CR>
 nnoremap <silent> <leader>bs :NERDTreeFocus<CR>
 nnoremap <leader>gg :Gblame<CR>
 nnoremap <leader>o :Files<CR>
@@ -391,15 +390,21 @@ let g:splitjoin_trailing_comma = 1
 " vim-maximizer
 nmap <leader>z :MaximizerToggle!<CR>
 
+" Enable standard mapping in vimspector
+let g:vimspector_enable_mappings = 'HUMAN'
+
 " vimspector package for debugging
 let g:vimspector_install_gadgets = [
       \ 'vscode-node-debug2',
       \ 'debugger-for-chrome'
       \ ]
 
+" vim-flog remapping
 nmap <silent> <leader>G :Flog<CR>
 nmap <silent> <leader>S :Gstatus<CR>
 nmap <silent> yg <Plug>(FlogYank)
+nmap <expr> <C-f> b:current_syntax == 'floggraph' ? ':Flogsetargs ' : ':NERDTreeFind<CR>'
+nmap <expr> <C-j> b:current_syntax == 'floggraph' ? ':Flogjump ' : '<C-j>'
 
 " --- Auto command
 " styled-components
@@ -426,3 +431,7 @@ autocmd! BufEnter * echo @%
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
       \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+" Not open the split when jump to next ref
+autocmd FileType floggraph nnoremap <buffer> <silent> ]r :<C-U>call flog#next_ref()<CR>
+autocmd FileType floggraph nnoremap <buffer> <silent> [r :<C-U>call flog#previous_ref()<CR>
