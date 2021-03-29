@@ -25,7 +25,6 @@ set smarttab
 set smartindent
 set ignorecase
 set smartcase
-set relativenumber
 set nu
 set nowrap
 set noswapfile
@@ -85,8 +84,8 @@ let mapleader = " "
 
 " --- Key mapping
 " Remapping some keys for convenience
-noremap . ;
-noremap ; :
+nnoremap . ;
+nnoremap ; :
 inoremap jk <esc>
 nnoremap zx zz10<C-e>
 noremap n nzz
@@ -99,8 +98,8 @@ noremap <silent> <C-d> <C-d>zz
 noremap <silent> <C-u> <C-u>zz
 noremap <silent> <C-e> 5<C-e>
 noremap <silent> <C-y> 5<C-y>
-noremap <silent> zl 10zl
-noremap <silent> zh 10zh
+noremap <silent> zl 20zl
+noremap <silent> zh 20zh
 nnoremap <silent> <leader>gt gt
 nnoremap <silent> <leader>gT gT
 

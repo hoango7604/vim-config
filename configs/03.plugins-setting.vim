@@ -81,6 +81,7 @@ endif
 nnoremap <silent> <leader>un :UndotreeShow<CR>
 nnoremap <silent> <C-b> :NERDTreeToggle<CR>
 nnoremap <silent> <leader>bs :NERDTreeFocus<CR>
+nnoremap <silent> <C-f> :NERDTreeFind<CR>
 nnoremap <leader>gg :Gblame<CR>
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>O :GFiles<CR>
@@ -230,7 +231,7 @@ nnoremap <silent> <leader>tt :exe "tabn ".g:lasttab<CR>
 au TabLeave * let g:lasttab = tabpagenr()
 
 " --- JsDoc add description
-nnoremap <silent> <leader>d :JsDoc<CR>
+nnoremap <silent> <leader>dj :JsDoc<CR>
 
 " --- Config vim-grepper to replace text in multiple files
 let g:grepper={}
@@ -310,7 +311,7 @@ map f <plug>(easymotion-bd-f)
 map F <plug>(easymotion-bd-f)
 map t <plug>(easymotion-bd-t)
 map T <plug>(easymotion-bd-t)
-map s <plug>(easymotion-s2)
+nmap s <plug>(easymotion-s2)
 nmap * <plug>(easymotion-sn)<C-r><C-w>
 xmap *
       \ "sy
@@ -388,10 +389,39 @@ nmap <leader>gj :SplitjoinJoin<CR>
 let g:splitjoin_trailing_comma = 1
 
 " vim-maximizer
-nmap <leader>z :MaximizerToggle!<CR>
+nmap <silent> <leader>z :MaximizerToggle!<CR>
 
 " Enable standard mapping in vimspector
 let g:vimspector_enable_mappings = 'HUMAN'
+
+" Remapping vimspector short keys
+nmap <silent> <leader>dc <plug>VimspectorContinue
+nmap <silent> <leader>ds <plug>VimspectorStop
+nmap <silent> <leader>dr <plug>VimspectorRestart
+nmap <silent> <leader>dp <plug>VimspectorPause
+nmap <silent> <leader>db <plug>VimspectorToggleBreakpoint
+nmap <silent> <leader>dxb <plug>VimspectorToggleConditionalBreakpoint
+nmap <silent> <leader>dfb <plug>VimspectorAddFunctionBreakpoint
+nmap <silent> <leader>dr <plug>VimspectorRunToCursor
+nmap <silent> <leader>dn <plug>VimspectorStepOver
+nmap <silent> <leader>di <plug>VimspectorStepInto
+nmap <silent> <leader>do <plug>VimspectorStepOut
+nmap <silent> <leader>dv <plug>VimspectorBalloonEval
+xmap <silent> <leader>dv <plug>VimspectorBalloonEval
+nmap <silent> <leader>du <plug>VimspectorUpFrame
+nmap <silent> <leader>dd <plug>VimspectorDownFrame
+nmap <silent> <leader>dl :call vimspector#ListBreakpoints()<CR>
+nmap <silent> <C-s> :call vimspector#Launch()<CR>
+nmap <silent> <C-c> :call vimspector#Reset()<CR>
+
+" Change vimspector signs priority
+let g:vimspector_sign_priority = {
+      \    'vimspectorBP':         100,
+      \    'vimspectorBPCond':     100,
+      \    'vimspectorBPDisabled': 100,
+      \    'vimspectorPC':         999,
+      \    'vimspectorPCBP':       999,
+      \ }
 
 " vimspector package for debugging
 let g:vimspector_install_gadgets = [
@@ -403,8 +433,6 @@ let g:vimspector_install_gadgets = [
 nmap <silent> <leader>G :Flog<CR>
 nmap <silent> <leader>S :Gstatus<CR>
 nmap <silent> yg <Plug>(FlogYank)
-nmap <expr> <C-f> b:current_syntax == 'floggraph' ? ':Flogsetargs ' : ':NERDTreeFind<CR>'
-nmap <expr> <C-j> b:current_syntax == 'floggraph' ? ':Flogjump ' : '<C-j>'
 
 " --- Auto command
 " styled-components
@@ -428,10 +456,28 @@ autocmd BufRead,BufNewFile *.ts set filetype=typescriptreact
 " Show filename whenever enter new buffer
 autocmd! BufEnter * echo @%
 
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+" If another buffer tries to replace NERDTree, put it in another window, and
+" then bring back
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
       \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
 " Not open the split when jump to next ref
-autocmd FileType floggraph nnoremap <buffer> <silent> ]r :<C-U>call flog#next_ref()<CR>
-autocmd FileType floggraph nnoremap <buffer> <silent> [r :<C-U>call flog#previous_ref()<CR>
+autocmd FileType floggraph nmap <buffer> <silent> ]r :<C-U>call flog#next_ref()<CR>
+autocmd FileType floggraph nmap <buffer> <silent> [r :<C-U>call flog#previous_ref()<CR>
+
+" Find commits in vim-flog
+autocmd FileType floggraph nmap <C-f> :Flogsetargs<Space>
+autocmd FileType floggraph nmap <C-j> :Flogjump<Space>
+
+" Auto focus on commit split
+autocmd FileType floggraph nmap <buffer> <silent> <CR> <Plug>(FlogVSplitCommitRight)<C-w>w
+
+" Enhancement for vim-fugitive diff mappings
+autocmd User FugitiveIndex nmap <buffer> O :Gtabedit <Plug><cfile><Bar>Gvdiffsplit<CR>
+
+" Remap s in buffer when using :GStatus to easymotion sneak (since I don't
+" use :Git command in vim-fugitive)
+autocmd User FugitiveIndex nmap <buffer> s <plug>(easymotion-s2)
+
+" Auto fold on git commit buffer
+autocmd FileType git set foldmethod=syntax

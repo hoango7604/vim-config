@@ -12,8 +12,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tommcdo/vim-fugitive-blame-ext'
 " Git branch viewer integrates with fugitive
 Plug 'rbong/vim-flog'
-" Undotree
-Plug 'mbbill/undotree'
 " Support action on project (find text in files, open files, etc.)
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Support Fzf to fully operate inside vim
@@ -56,6 +54,8 @@ Plug 'romainl/vim-cool'
 Plug 'AndrewRadev/splitjoin.vim'
 " Maximize working buffer
 Plug 'szw/vim-maximizer'
+" Working with large file
+Plug 'vim-scripts/LargeFile'
 
 " --- Plugins for theme and status line
 " Grubbox theme
