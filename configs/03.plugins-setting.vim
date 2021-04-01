@@ -18,15 +18,15 @@ colorscheme gruvbox
 let g:loaded_matchit = 1
 
 " --- Customize highlight color
-highlight CocHighlightText guibg=#4f4f4f cterm=bold
-highlight MatchParen guibg=#4f4f4f cterm=bold
-highlight MatchWord guibg=#4f4f4f cterm=bold
-highlight Visual guifg=white ctermfg=white guibg=#1b8a4a cterm=bold gui=bold
-highlight Search guifg=white ctermfg=white guibg=#1b8a4a cterm=bold gui=bold
-highlight EasyMotionMoveHL guifg=white ctermfg=white guibg=#1b8a4a cterm=bold gui=bold
+highlight CocHighlightText        guibg=#4f4f4f cterm=bold
+highlight MatchParen              guibg=#4f4f4f cterm=bold
+highlight MatchWord               guibg=#4f4f4f cterm=bold
+highlight Visual                  guifg=white ctermfg=white guibg=#1b8a4a cterm=bold gui=bold
+highlight Search                  guifg=white ctermfg=white guibg=#1b8a4a cterm=bold gui=bold
+highlight EasyMotionMoveHL        guifg=white ctermfg=white guibg=#1b8a4a cterm=bold gui=bold
 highlight EasyMotionTarget2Second guifg=#1b8a4a
-highlight link EasyMotionTarget EasyMotionTarget2First
-highlight link EasyMotionShade Comment
+highlight link EasyMotionTarget   EasyMotionTarget2First
+highlight link EasyMotionShade    Comment
 
 " --- Other config
 if executable('rg')
@@ -138,7 +138,8 @@ let g:coc_global_extensions = [
       \ 'coc-json',
       \ 'coc-html',
       \ 'coc-css',
-      \ 'coc-git'
+      \ 'coc-git',
+      \ 'coc-go'
       \ ]
 
 " Search among files with the matching phrase
@@ -311,7 +312,7 @@ map f <plug>(easymotion-bd-f)
 map F <plug>(easymotion-bd-f)
 map t <plug>(easymotion-bd-t)
 map T <plug>(easymotion-bd-t)
-nmap s <plug>(easymotion-s2)
+map s <plug>(easymotion-s2)
 nmap * <plug>(easymotion-sn)<C-r><C-w>
 xmap *
       \ "sy
@@ -359,7 +360,7 @@ let g:vimade = {
       \ 'checkinterval': 100,
       \ 'colbufsize': 15,
       \ 'rowbufsize': 15,
-      \ 'usecursorhold': 1,
+      \ 'usecursorhold': 0,
       \ 'detecttermcolors': 0,
       \ 'enablescroll': 1,
       \ 'enablesigns': 1,
@@ -413,6 +414,7 @@ nmap <silent> <leader>dd <plug>VimspectorDownFrame
 nmap <silent> <leader>dl :call vimspector#ListBreakpoints()<CR>
 nmap <silent> <C-s> :call vimspector#Launch()<CR>
 nmap <silent> <C-c> :call vimspector#Reset()<CR>
+nmap <silent> <leader>da :call vimspector#Restart()<CR>
 
 " Change vimspector signs priority
 let g:vimspector_sign_priority = {
@@ -433,6 +435,27 @@ let g:vimspector_install_gadgets = [
 nmap <silent> <leader>G :Flog<CR>
 nmap <silent> <leader>S :Gstatus<CR>
 nmap <silent> yg <Plug>(FlogYank)
+
+" Prettify git log graph by using git-forest
+function FlogBuildLog() abort
+  let l:state = flog#get_state()
+
+  if l:state.no_graph
+    return flog#build_log_command()
+  endif
+
+  let l:command = 'export GIT_DIR='
+  let l:command .= shellescape(flog#get_fugitive_git_dir())
+  let l:command .= '; '
+
+  let l:command .= 'git-forest --style=15'
+  let l:command .= substitute(flog#build_log_args(), ' --graph', '', '')
+  let l:command .= ' -- '
+  let l:command .= flog#build_log_paths()
+
+  return l:command
+endfunction
+let g:flog_build_log_command_fn = 'FlogBuildLog'
 
 " --- Auto command
 " styled-components
@@ -456,24 +479,27 @@ autocmd BufRead,BufNewFile *.ts set filetype=typescriptreact
 " Show filename whenever enter new buffer
 autocmd! BufEnter * echo @%
 
-" If another buffer tries to replace NERDTree, put it in another window, and
-" then bring back
-autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-      \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
 " Not open the split when jump to next ref
 autocmd FileType floggraph nmap <buffer> <silent> ]r :<C-U>call flog#next_ref()<CR>
 autocmd FileType floggraph nmap <buffer> <silent> [r :<C-U>call flog#previous_ref()<CR>
 
 " Find commits in vim-flog
-autocmd FileType floggraph nmap <C-f> :Flogsetargs<Space>
-autocmd FileType floggraph nmap <C-j> :Flogjump<Space>
+autocmd FileType floggraph nmap <buffer> <C-f> :Flogsetargs<Space>
+autocmd FileType floggraph nmap <buffer> <C-j> :Flogjump<Space>
+
+" Quickly jump to parent/child commit
+autocmd FileType floggraph nmap <buffer> <silent> ]c :call flog#jump_to_parent()<CR>
+autocmd FileType floggraph nmap <buffer> <silent> [c :call flog#jump_to_child()<CR>
 
 " Auto focus on commit split
 autocmd FileType floggraph nmap <buffer> <silent> <CR> <Plug>(FlogVSplitCommitRight)<C-w>w
 
+" Quickly copy commit hash to clipboard
+autocmd FileType floggraph nmap <buffer> <silent> yy <Plug>(FlogYank)<Bar>:call setreg('*', @")<CR>
+autocmd FileType floggraph vmap <buffer> <silent> yy <Plug>(FlogYank)<Bar>:call setreg('*', @")<CR>
+
 " Enhancement for vim-fugitive diff mappings
-autocmd User FugitiveIndex nmap <buffer> O :Gtabedit <Plug><cfile><Bar>Gvdiffsplit<CR>
+autocmd User FugitiveIndex nmap <buffer> O :Gtabedit <Plug><cfile><Bar>:Gvdiffsplit<CR>
 
 " Remap s in buffer when using :GStatus to easymotion sneak (since I don't
 " use :Git command in vim-fugitive)

@@ -11,7 +11,8 @@ Plug 'tpope/vim-fugitive'
 " Extension for vim-fugitive to show commit message directly
 Plug 'tommcdo/vim-fugitive-blame-ext'
 " Git branch viewer integrates with fugitive
-Plug 'rbong/vim-flog'
+" Plug 'rbong/vim-flog'
+Plug 'TamaMcGlinn/vim-flog', { 'branch': 'feature/quick_navigate' }
 " Support action on project (find text in files, open files, etc.)
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Support Fzf to fully operate inside vim
