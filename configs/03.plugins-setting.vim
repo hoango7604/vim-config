@@ -77,6 +77,21 @@ else
   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 
+" declare function for moving left when closing a tab.
+function! TabCloseLeft(cmd)
+  if winnr('$') == 1 && tabpagenr('$') > 1 && tabpagenr() > 1 && tabpagenr() < tabpagenr('$')
+    exec a:cmd | tabprevious
+  else
+    exec a:cmd
+  endif
+endfunction
+
+" define :Q command
+command Q call TabCloseLeft('q!')
+
+" override default quit command
+cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Q' : 'q')<CR>
+
 " Shortkey for plugins operations on buffer
 nnoremap <silent> <leader>un :UndotreeShow<CR>
 nnoremap <silent> <C-b> :NERDTreeToggle<CR>
@@ -89,10 +104,10 @@ nnoremap <silent> <leader>= :vertical resize +5<CR>
 nnoremap <silent> <leader>- :vertical resize -5<CR>
 nnoremap <silent> <leader>. :resize +5<CR>
 nnoremap <silent> <leader>, :resize -5<CR>
-nnoremap <leader>ss :so ~/.config/nvim/init.vim<Bar>VimadeRedraw<CR>
+nnoremap <leader>ss :so ~/.config/nvim/init.vim<Bar>:VimadeRedraw<CR>
 nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q<CR>
-nnoremap <leader>xo <C-w>o
+nnoremap <leader>q :Q<CR>
+nnoremap <leader>xo :only<CR>
 nnoremap <leader>xx :tabclose<CR>
 nnoremap <leader>xb :Bdelete menu<CR>
 nnoremap <leader>nt :tabnew<CR>
@@ -102,9 +117,9 @@ nnoremap <leader>br :checktime<CR>
 nnoremap <leader>so :set so=10<CR>
 
 " vim-plug
-nnoremap <leader>in :PlugInstall<CR>
-nnoremap <leader>cl :PlugClean<CR>
-nnoremap <leader>up :PlugUpdate<CR>
+nnoremap <leader>I :PlugInstall<CR>
+nnoremap <leader>C :PlugClean<CR>
+nnoremap <leader>U :PlugUpdate<CR>
 
 " Moving tab
 nnoremap <silent> <leader>th :tabmove -1<CR>
@@ -124,7 +139,7 @@ nmap <silent> <leader>gl :<C-u>CocList diagnostics<CR>
 nmap <silent> <leader>g] <plug>(coc-diagnostic-next)
 nmap <silent> <leader>gp <plug>(coc-diagnostic-prev-error)
 nmap <silent> <leader>gn <plug>(coc-diagnostic-next-error)
-nmap <leader>cr :CocRestart<Cr>
+nmap <silent> <leader>gcr :CocRestart<Cr>
 nmap <leader>a <plug>(coc-codeaction)
 
 " coc.nvim extensions list
@@ -139,8 +154,29 @@ let g:coc_global_extensions = [
       \ 'coc-html',
       \ 'coc-css',
       \ 'coc-git',
-      \ 'coc-go'
+      \ 'coc-go',
+      \ 'coc-snippets'
       \ ]
+
+" Coc-snippets
+imap <C-l> <Plug>(coc-snippets-expand)
+vmap <C-j> <Plug>(coc-snippets-select)
+
+let g:coc_snippet_next = '<c-j>'
+let g:coc_snippet_prev = '<c-k>'
+
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+xmap <leader>sn <Plug>(coc-convert-snipper)
+
+" quickfix mappings
+nmap <silent> <leader>co :copen<CR>
+nmap <silent> <leader>cl :cclose<CR>
+nmap <silent> <leader>cn :cnext<CR>
+nmap <silent> <leader>cp :cprev<CR>
+nmap <silent> <leader>bo :lopen<CR>
+nmap <silent> <leader>bl :lclose<CR>
+nmap <silent> <leader>bn :lnext<CR>
+nmap <silent> <leader>bp :lprev<CR>
 
 " Search among files with the matching phrase
 nnoremap <leader>f :Rg<Space>
@@ -238,6 +274,7 @@ nnoremap <silent> <leader>dj :JsDoc<CR>
 let g:grepper={}
 let g:grepper.tools=["rg"]
 
+nmap <leader>cg :Grepper<CR>
 nmap <leader>go <plug>(GrepperOperator)
 xmap <leader>go <plug>(GrepperOperator)
 
@@ -383,8 +420,8 @@ endif
 " Remapping splitjoin.vim
 let g:splitjoin_split_mapping = ''
 let g:splitjoin_join_mapping = ''
-nmap <leader>gs :SplitjoinSplit<CR>
-nmap <leader>gj :SplitjoinJoin<CR>
+nmap <leader>sj :SplitjoinSplit<CR>
+nmap <leader>js :SplitjoinJoin<CR>
 
 " Add trailing comma after split
 let g:splitjoin_trailing_comma = 1
@@ -412,9 +449,9 @@ xmap <silent> <leader>dv <plug>VimspectorBalloonEval
 nmap <silent> <leader>du <plug>VimspectorUpFrame
 nmap <silent> <leader>dd <plug>VimspectorDownFrame
 nmap <silent> <leader>dl :call vimspector#ListBreakpoints()<CR>
-nmap <silent> <C-s> :call vimspector#Launch()<CR>
+nmap <silent> <leader>D :call vimspector#Launch()<CR>
 nmap <silent> <C-c> :call vimspector#Reset()<CR>
-nmap <silent> <leader>da :call vimspector#Restart()<CR>
+nmap <silent> <C-s> :call vimspector#Restart()<CR>
 
 " Change vimspector signs priority
 let g:vimspector_sign_priority = {
@@ -433,7 +470,7 @@ let g:vimspector_install_gadgets = [
 
 " vim-flog remapping
 nmap <silent> <leader>G :Flog<CR>
-nmap <silent> <leader>S :Gstatus<CR>
+nmap <silent> <leader>S :tabnew<Bar>:Gstatus<Bar>:only<CR>
 nmap <silent> yg <Plug>(FlogYank)
 
 " Prettify git log graph by using git-forest
@@ -448,7 +485,7 @@ function FlogBuildLog() abort
   let l:command .= shellescape(flog#get_fugitive_git_dir())
   let l:command .= '; '
 
-  let l:command .= 'git-forest --style=15'
+  let l:command .= 'git-forest --style=10'
   let l:command .= substitute(flog#build_log_args(), ' --graph', '', '')
   let l:command .= ' -- '
   let l:command .= flog#build_log_paths()

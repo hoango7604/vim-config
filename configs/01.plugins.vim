@@ -4,6 +4,8 @@ call plug#begin('~/.vim/plugged')
 " --- Plugins for editors (IDE)
 " Intellisense engine, full language server protocol support as VSCode
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Support snippets for coc-snippets
+Plug 'honza/vim-snippets'
 " NERDTree (directory tree)
 Plug 'preservim/nerdtree'
 " Support git action

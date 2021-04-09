@@ -100,14 +100,6 @@ noremap <silent> <C-e> 5<C-e>
 noremap <silent> <C-y> 5<C-y>
 noremap <silent> zl 20zl
 noremap <silent> zh 20zh
-nnoremap <silent> <leader>gt gt
-nnoremap <silent> <leader>gT gT
-
-" Moving cursor in insert mode
-inoremap <C-h> <left>
-inoremap <C-l> <right>
-inoremap <C-k> <up>
-inoremap <C-j> <down>
 
 " Replace text
 nnoremap <leader>r :%s///gc<left><left><left>
