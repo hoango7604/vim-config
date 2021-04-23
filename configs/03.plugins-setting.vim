@@ -40,7 +40,7 @@ let g:vrfr_rg = 'true'
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
 
-let g:closetag_filetypes = 'html,javascript,jsx,typescript,tsx'
+let g:closetag_filetypes = 'html,javascript,javascriptreact,typescript,typescriptreact'
 let g:closetag_close_shortcut = '@>'
 
 " --- NERDTree config
@@ -79,7 +79,7 @@ endif
 
 " declare function for moving left when closing a tab.
 function! TabCloseLeft(cmd)
-  if winnr('$') == 1 && tabpagenr('$') > 1 && tabpagenr() > 1 && tabpagenr() < tabpagenr('$')
+  if ((winnr('$') == 1 && a:cmd == "q!") || a:cmd != "q!") && tabpagenr('$') > 1 && tabpagenr() > 1 && tabpagenr() < tabpagenr('$')
     exec a:cmd | tabprevious
   else
     exec a:cmd
@@ -108,7 +108,7 @@ nnoremap <leader>ss :so ~/.config/nvim/init.vim<Bar>:VimadeRedraw<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :Q<CR>
 nnoremap <leader>xo :only<CR>
-nnoremap <leader>xx :tabclose<CR>
+nnoremap <leader>xx :call TabCloseLeft('tabclose!')<CR>
 nnoremap <leader>xb :Bdelete menu<CR>
 nnoremap <leader>nt :tabnew<CR>
 nnoremap <C-a> :CocList commands<CR>
@@ -139,7 +139,7 @@ nmap <silent> <leader>gl :<C-u>CocList diagnostics<CR>
 nmap <silent> <leader>g] <plug>(coc-diagnostic-next)
 nmap <silent> <leader>gp <plug>(coc-diagnostic-prev-error)
 nmap <silent> <leader>gn <plug>(coc-diagnostic-next-error)
-nmap <silent> <leader>gcr :CocRestart<Cr>
+nmap <silent> <leader>gs :CocRestart<Cr>
 nmap <leader>a <plug>(coc-codeaction)
 
 " coc.nvim extensions list
@@ -374,7 +374,7 @@ endif
 if has('nvim')
   let g:Hexokinase_highlighters = ['virtual']
 else
-  let g:Hexokinase_highlighters = ['signcolumn']
+  let g:Hexokinase_highlighters = ['sign_column']
 endif
 
 " indent line

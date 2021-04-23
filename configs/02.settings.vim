@@ -67,7 +67,11 @@ set winminheight=0
 set rtp+=/usr/local/opt/fzf
 
 " Show signcolumn for alerting error lines
-set signcolumn=yes
+if has('nvim')
+  set signcolumn=yes:9
+else
+  set signcolumn=yes
+endif
 
 " Disable blinking cursor (in macvim)
 set guicursor+=a:blinkon0
