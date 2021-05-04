@@ -67,14 +67,13 @@ set winminheight=0
 set rtp+=/usr/local/opt/fzf
 
 " Show signcolumn for alerting error lines
-if has('nvim')
-  set signcolumn=yes:9
-else
-  set signcolumn=yes
-endif
+set signcolumn=yes
 
 " Disable blinking cursor (in macvim)
 set guicursor+=a:blinkon0
+
+" Use UTF-8 as the default encoding
+set encoding=UTF-8
 
 " Set scroll offset
 set scrolloff=10
@@ -139,6 +138,10 @@ vnoremap p p<Bar>:'[,']normal ==<CR>
 " Search result should be scrolled to middle of the screen
 nnoremap n nzz
 nnoremap N Nzz
+
+" Changes in diff mode should be scrolled to middle of the screen
+nnoremap ]c ]czz
+nnoremap [c [czz
 
 " Move selecting lines up & down
 vnoremap J :m '>+1<CR>gv=gv

@@ -104,7 +104,7 @@ nnoremap <silent> <leader>= :vertical resize +5<CR>
 nnoremap <silent> <leader>- :vertical resize -5<CR>
 nnoremap <silent> <leader>. :resize +5<CR>
 nnoremap <silent> <leader>, :resize -5<CR>
-nnoremap <leader>ss :so ~/.config/nvim/init.vim<Bar>:VimadeRedraw<CR>
+nnoremap <leader>ss :so ~/.vimrc<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :Q<CR>
 nnoremap <leader>xo :only<CR>
@@ -134,11 +134,11 @@ nmap <silent> <leader>gy <plug>(coc-type-definition)
 nmap <silent> <leader>gm <plug>(coc-implementation)
 nmap <silent> <leader>ge <plug>(coc-references)
 nmap <silent> <leader>gr <plug>(coc-rename)
-nmap <silent> <leader>g[ <plug>(coc-diagnostic-prev)
 nmap <silent> <leader>gl :<C-u>CocList diagnostics<CR>
-nmap <silent> <leader>g] <plug>(coc-diagnostic-next)
-nmap <silent> <leader>gp <plug>(coc-diagnostic-prev-error)
-nmap <silent> <leader>gn <plug>(coc-diagnostic-next-error)
+nmap <silent> <leader>g[ <plug>(coc-diagnostic-prev)zz
+nmap <silent> <leader>g] <plug>(coc-diagnostic-next)zz
+nmap <silent> <leader>gp <plug>(coc-diagnostic-prev-error)zz
+nmap <silent> <leader>gn <plug>(coc-diagnostic-next-error)zz
 nmap <silent> <leader>gs :CocRestart<Cr>
 nmap <leader>a <plug>(coc-codeaction)
 
