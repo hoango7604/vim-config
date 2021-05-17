@@ -88,7 +88,7 @@ let mapleader = " "
 " --- Key mapping
 " Remapping some keys for convenience
 nnoremap . ;
-nnoremap ; :
+map ; :
 inoremap jk <esc>
 nnoremap zx zz10<C-e>
 noremap n nzz
@@ -134,6 +134,7 @@ vnoremap <leader>p "*p<Bar>:'[,']normal ==<CR>
 vnoremap <leader>Y "+y
 vnoremap <leader>P "+p<Bar>:'[,']normal ==<CR>
 vnoremap p p<Bar>:'[,']normal ==<CR>
+nmap <leader>ts :tab split<CR>
 
 " Search result should be scrolled to middle of the screen
 nnoremap n nzz

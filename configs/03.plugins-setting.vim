@@ -146,6 +146,7 @@ nmap <leader>a <plug>(coc-codeaction)
 let g:coc_global_extensions = [
       \ 'coc-vimlsp',
       \ 'coc-highlight',
+      \ 'coc-clangd',
       \ 'coc-eslint',
       \ 'coc-tsserver',
       \ 'coc-sh',
