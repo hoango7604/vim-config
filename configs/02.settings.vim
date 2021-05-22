@@ -135,6 +135,7 @@ vnoremap <leader>Y "+y
 vnoremap <leader>P "+p<Bar>:'[,']normal ==<CR>
 vnoremap p p<Bar>:'[,']normal ==<CR>
 nmap <leader>ts :tab split<CR>
+nmap <leader>T :tabs<CR>
 
 " Search result should be scrolled to middle of the screen
 nnoremap n nzz

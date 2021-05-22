@@ -97,7 +97,7 @@ nnoremap <silent> <leader>un :UndotreeShow<CR>
 nnoremap <silent> <C-b> :NERDTreeToggle<CR>
 nnoremap <silent> <leader>bs :NERDTreeFocus<CR>
 nnoremap <silent> <C-f> :NERDTreeFind<CR>
-nnoremap <leader>gg :Gblame<CR>
+nnoremap gb :Gblame<CR>
 nnoremap <leader>o :Files<CR>
 nnoremap <leader>O :GFiles<CR>
 nnoremap <silent> <leader>= :vertical resize +5<CR>
@@ -107,6 +107,7 @@ nnoremap <silent> <leader>, :resize -5<CR>
 nnoremap <leader>ss :so ~/.vimrc<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :Q<CR>
+nnoremap gq :Q<CR>
 nnoremap <leader>xo :only<CR>
 nnoremap <leader>xx :call TabCloseLeft('tabclose!')<CR>
 nnoremap <leader>xb :Bdelete menu<CR>
@@ -126,20 +127,20 @@ nnoremap <silent> <leader>th :tabmove -1<CR>
 nnoremap <silent> <leader>tl :tabmove +1<CR>
 
 " coc.nvim remappings
-nmap <silent> <leader>gd <plug>(coc-definition)zz
-nmap <silent> <leader>gx :sp<CR><plug>(coc-definition)zz
-nmap <silent> <leader>gv :vsp<CR><plug>(coc-definition)zz
-nmap <silent> <leader>gt :vsp<CR><plug>(coc-definition)<C-W>Tzz
-nmap <silent> <leader>gy <plug>(coc-type-definition)
-nmap <silent> <leader>gm <plug>(coc-implementation)
-nmap <silent> <leader>ge <plug>(coc-references)
-nmap <silent> <leader>gr <plug>(coc-rename)
-nmap <silent> <leader>gl :<C-u>CocList diagnostics<CR>
-nmap <silent> <leader>g[ <plug>(coc-diagnostic-prev)zz
-nmap <silent> <leader>g] <plug>(coc-diagnostic-next)zz
-nmap <silent> <leader>gp <plug>(coc-diagnostic-prev-error)zz
-nmap <silent> <leader>gn <plug>(coc-diagnostic-next-error)zz
-nmap <silent> <leader>gs :CocRestart<Cr>
+nmap <silent> gd <plug>(coc-definition)zz
+nmap <silent> gx :sp<CR><plug>(coc-definition)zz
+nmap <silent> gv :vsp<CR><plug>(coc-definition)zz
+nmap <silent> gnt :vsp<CR><plug>(coc-definition)<C-W>Tzz
+nmap <silent> gy <plug>(coc-type-definition)
+nmap <silent> gim <plug>(coc-implementation)
+nmap <silent> ge <plug>(coc-references)
+nmap <silent> gr <plug>(coc-rename)
+nmap <silent> gl :<C-u>CocList diagnostics<CR>
+nmap <silent> g[ <plug>(coc-diagnostic-prev)zz
+nmap <silent> g] <plug>(coc-diagnostic-next)zz
+nmap <silent> gp <plug>(coc-diagnostic-prev-error)zz
+nmap <silent> gn <plug>(coc-diagnostic-next-error)zz
+nmap <silent> gs :CocRestart<Cr>
 nmap <leader>a <plug>(coc-codeaction)
 
 " coc.nvim extensions list
@@ -191,7 +192,7 @@ nnoremap <leader>F :Rg <C-r>f<CR>
 " --- Autolint command
 command! -nargs=0 ExecuteAutoLint
       \ :call CocActionAsync('runCommand', 'eslint.executeAutofix')
-nmap <leader>gf :ExecuteAutoLint<CR>
+nmap gf :ExecuteAutoLint<CR>
 
 " --- Show document
 function! s:show_documentation()
@@ -240,9 +241,9 @@ nnoremap <expr> <c-j> ScrollPopUp(1) ? '<esc>' : '<c-j>'
 nnoremap <expr> <c-k> ScrollPopUp(0) ? '<esc>' : '<c-k>'
 
 " --- Git mergetool
-nnoremap <leader>gi :diffget REMOTE<Bar>diffupdate<CR>
-nnoremap <leader>gc :diffget LOCAL<Bar>diffupdate<CR>
-nnoremap <leader>gb :/>>>>>>>/;?<<<<<<<?,.g/^\(<<<<<<<\\|=======\\|>>>>>>>\)/d<CR>
+nnoremap gmi :diffget REMOTE<Bar>diffupdate<CR>
+nnoremap gmc :diffget LOCAL<Bar>diffupdate<CR>
+nnoremap gmb :/>>>>>>>/;?<<<<<<<?,.g/^\(<<<<<<<\\|=======\\|>>>>>>>\)/d<CR>
 
 " --- Search for selected text, forwards or backwards.
 " Press * to search forwards or # to search backwards
@@ -275,9 +276,9 @@ nnoremap <silent> <leader>dj :JsDoc<CR>
 let g:grepper={}
 let g:grepper.tools=["rg"]
 
-nmap <leader>cg :Grepper<CR>
-nmap <leader>go <plug>(GrepperOperator)
-xmap <leader>go <plug>(GrepperOperator)
+nmap <leader>gr :Grepper<CR>
+nmap go <plug>(GrepperOperator)
+xmap go <plug>(GrepperOperator)
 
 " Find and replace all text under the cursor. It's similar to <leader>r
 " except this one applies to all matches
@@ -459,8 +460,8 @@ let g:vimspector_sign_priority = {
       \    'vimspectorBP':         100,
       \    'vimspectorBPCond':     100,
       \    'vimspectorBPDisabled': 100,
-      \    'vimspectorPC':         999,
-      \    'vimspectorPCBP':       999,
+      \    'vimspectorPC':         9999,
+      \    'vimspectorPCBP':       9999,
       \ }
 
 " vimspector package for debugging
