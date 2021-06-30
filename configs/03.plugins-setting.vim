@@ -138,8 +138,8 @@ nmap <silent> gr <plug>(coc-rename)
 nmap <silent> gl :<C-u>CocList diagnostics<CR>
 nmap <silent> g[ <plug>(coc-diagnostic-prev)zz
 nmap <silent> g] <plug>(coc-diagnostic-next)zz
-nmap <silent> gp <plug>(coc-diagnostic-prev-error)zz
-nmap <silent> gn <plug>(coc-diagnostic-next-error)zz
+nmap <silent> [g <plug>(coc-diagnostic-prev-error)zz
+nmap <silent> ]g <plug>(coc-diagnostic-next-error)zz
 nmap <silent> gs :CocRestart<Cr>
 nmap <leader>a <plug>(coc-codeaction)
 
@@ -496,6 +496,13 @@ function FlogBuildLog() abort
 endfunction
 let g:flog_build_log_command_fn = 'FlogBuildLog'
 
+" Compile cpp file using g++
+nmap g++ :!g++ -std=c++14 -O2 -Wall main.cpp -o main && ./main<CR>
+nmap cpp :!./main<CR>
+
+" Disable saving the session on BufEnter 
+let g:obsession_no_bufenter = 1
+
 " --- Auto command
 " styled-components
 " Fix breaking syntax highlighting in very long files
@@ -503,8 +510,8 @@ autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 " Show NERDTree on vim enter
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Lessen the redraw effect when content changed among buffers with vimade
 " Ref: https://github.com/TaDaa/vimade#faqhelp
