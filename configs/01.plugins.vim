@@ -96,5 +96,7 @@ Plug 'heavenshell/vim-jsdoc', {
 Plug 'maxmellon/vim-jsx-pretty'
 " JSON syntax
 Plug 'kevinoid/vim-jsonc'
+" Calculate import size
+Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 
 call plug#end()

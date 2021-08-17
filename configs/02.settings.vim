@@ -72,6 +72,9 @@ set signcolumn=yes
 " Disable blinking cursor (in macvim)
 set guicursor+=a:blinkon0
 
+" Using block cursor in insert mode (in neovim)
+set guicursor+=i:block
+
 " Use UTF-8 as the default encoding
 set encoding=UTF-8
 

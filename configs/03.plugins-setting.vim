@@ -555,3 +555,17 @@ autocmd User FugitiveIndex nmap <buffer> s <plug>(easymotion-s2)
 
 " Auto fold on git commit buffer
 autocmd FileType git set foldmethod=syntax
+
+" Automatically run vim-import-cost
+if has('nvim')
+  augroup import_cost_auto_run
+    autocmd!
+    autocmd InsertLeave *.js,*.jsx,*.ts,*.tsx ImportCost
+    autocmd BufEnter *.js,*.jsx,*.ts,*.tsx ImportCost
+    autocmd CursorHold *.js,*.jsx,*.ts,*.tsx ImportCost
+  augroup END
+endif
+
+" Temporarily disable Coc when using easymotion
+autocmd User EasyMotionPromptBegin silent! CocDisable
+autocmd User EasyMotionPromptEnd silent! CocEnable
