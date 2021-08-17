@@ -430,6 +430,8 @@ let g:splitjoin_trailing_comma = 1
 
 " vim-maximizer
 nmap <silent> <leader>z :MaximizerToggle!<CR>
+" Also work like maximizer, but would open a new tab
+nmap <silent> <leader>te :tabedit %<CR>
 
 " Enable standard mapping in vimspector
 let g:vimspector_enable_mappings = 'HUMAN'

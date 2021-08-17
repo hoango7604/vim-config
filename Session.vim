@@ -11,21 +11,25 @@ endif
 set shortmess=aoO
 argglobal
 %argdel
-edit configs/03.plugins-setting.vim
+edit configs/01.plugins.vim
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
-1wincmd h
+wincmd _ | wincmd |
+vsplit
+2wincmd h
+wincmd w
 wincmd w
 wincmd t
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 75 + 75) / 151)
-exe 'vert 2resize ' . ((&columns * 75 + 75) / 151)
+exe 'vert 1resize ' . ((&columns * 0 + 75) / 151)
+exe 'vert 2resize ' . ((&columns * 0 + 75) / 151)
+exe 'vert 3resize ' . ((&columns * 149 + 75) / 151)
 argglobal
-balt configs/02.settings.vim
+balt configs/03.plugins-setting.vim
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -36,12 +40,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 504 - ((24 * winheight(0) + 25) / 50)
+let s:l = 6 - ((5 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 504
-normal! 0
+keepjumps 6
+normal! 020|
 lcd ~/.config/nvim
 wincmd w
 argglobal
@@ -65,12 +69,35 @@ keepjumps 1
 normal! 0
 lcd ~/.config/nvim
 wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 75 + 75) / 151)
-exe 'vert 2resize ' . ((&columns * 75 + 75) / 151)
+argglobal
+if bufexists("~/.config/nvim/configs/03.plugins-setting.vim") | buffer ~/.config/nvim/configs/03.plugins-setting.vim | else | edit ~/.config/nvim/configs/03.plugins-setting.vim | endif
+balt ~/.config/nvim/configs/01.plugins.vim
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 442 - ((24 * winheight(0) + 25) / 50)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 442
+normal! 016|
+lcd ~/.config/nvim
+wincmd w
+3wincmd w
+exe 'vert 1resize ' . ((&columns * 0 + 75) / 151)
+exe 'vert 2resize ' . ((&columns * 0 + 75) / 151)
+exe 'vert 3resize ' . ((&columns * 149 + 75) / 151)
 tabnext 1
-badd +0 ~/.config/nvim/configs/03.plugins-setting.vim
-badd +1 ~/.config/nvim/configs/02.settings.vim
+badd +495 ~/.config/nvim/configs/03.plugins-setting.vim
+badd +0 ~/.config/nvim/configs/02.settings.vim
+badd +0 ~/.config/nvim/configs/01.plugins.vim
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
