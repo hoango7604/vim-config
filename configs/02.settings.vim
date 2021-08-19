@@ -93,7 +93,6 @@ let mapleader = " "
 nnoremap . ;
 map ; :
 inoremap jk <esc>
-nnoremap zx zz10<C-e>
 noremap n nzz
 noremap N Nzz
 noremap * *zz

@@ -25,9 +25,9 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 0 + 75) / 151)
-exe 'vert 2resize ' . ((&columns * 0 + 75) / 151)
-exe 'vert 3resize ' . ((&columns * 149 + 75) / 151)
+exe 'vert 1resize ' . ((&columns * 63 + 95) / 191)
+exe 'vert 2resize ' . ((&columns * 63 + 95) / 191)
+exe 'vert 3resize ' . ((&columns * 63 + 95) / 191)
 argglobal
 balt configs/03.plugins-setting.vim
 setlocal fdm=manual
@@ -40,12 +40,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 6 - ((5 * winheight(0) + 25) / 50)
+let s:l = 17 - ((16 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 6
-normal! 020|
+keepjumps 17
+normal! 07|
 lcd ~/.config/nvim
 wincmd w
 argglobal
@@ -61,7 +61,7 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 25) / 50)
+let s:l = 1 - ((0 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -82,7 +82,7 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 442 - ((24 * winheight(0) + 25) / 50)
+let s:l = 442 - ((23 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -90,14 +90,13 @@ keepjumps 442
 normal! 016|
 lcd ~/.config/nvim
 wincmd w
-3wincmd w
-exe 'vert 1resize ' . ((&columns * 0 + 75) / 151)
-exe 'vert 2resize ' . ((&columns * 0 + 75) / 151)
-exe 'vert 3resize ' . ((&columns * 149 + 75) / 151)
+exe 'vert 1resize ' . ((&columns * 63 + 95) / 191)
+exe 'vert 2resize ' . ((&columns * 63 + 95) / 191)
+exe 'vert 3resize ' . ((&columns * 63 + 95) / 191)
 tabnext 1
-badd +495 ~/.config/nvim/configs/03.plugins-setting.vim
-badd +0 ~/.config/nvim/configs/02.settings.vim
-badd +0 ~/.config/nvim/configs/01.plugins.vim
+badd +1 ~/.config/nvim/configs/01.plugins.vim
+badd +1 ~/.config/nvim/configs/03.plugins-setting.vim
+badd +1 ~/.config/nvim/configs/02.settings.vim
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
