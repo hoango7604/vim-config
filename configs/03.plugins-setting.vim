@@ -133,8 +133,8 @@ nmap <silent> gv :vsp<CR><plug>(coc-definition)zz
 nmap <silent> gnt :vsp<CR><plug>(coc-definition)<C-W>Tzz
 nmap <silent> gy <plug>(coc-type-definition)
 nmap <silent> gim <plug>(coc-implementation)
-nmap <silent> ge <plug>(coc-references)
-nmap <silent> gr <plug>(coc-rename)
+nmap <silent> gr <plug>(coc-references)
+nmap <silent> ge <plug>(coc-rename)
 nmap <silent> gl :<C-u>CocList diagnostics<CR>
 nmap <silent> g[ <plug>(coc-diagnostic-prev)zz
 nmap <silent> g] <plug>(coc-diagnostic-next)zz
@@ -502,6 +502,9 @@ let g:flog_build_log_command_fn = 'FlogBuildLog'
 nmap g++ :!g++ -std=c++14 -O2 -Wall main.cpp -o main && ./main<CR>
 nmap cpp :!./main<CR>
 
+" Change default minimum size of a file to be considered as a 'LargeFile'
+let g:LargeFile = 1
+
 " Disable saving the session on BufEnter 
 let g:obsession_no_bufenter = 1
 
@@ -566,6 +569,8 @@ if has('nvim')
   augroup END
 endif
 
-" Temporarily disable Coc when using easymotion
-autocmd User EasyMotionPromptBegin silent! CocDisable
-autocmd User EasyMotionPromptEnd silent! CocEnable
+" Temporarily disable Coc when using easymotion (only when using neovim)
+if has('nvim')
+  autocmd User EasyMotionPromptBegin silent! CocDisable
+  autocmd User EasyMotionPromptEnd silent! CocEnable
+endif
