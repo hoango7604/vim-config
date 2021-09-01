@@ -589,7 +589,7 @@ nmap cpp :!./main<CR>
 " Change default minimum size of a file to be considered as a 'LargeFile'
 let g:LargeFile = 1
 
-" Disable saving the session on BufEnter 
+" Disable saving the session on BufEnter
 let g:obsession_no_bufenter = 1
 
 " Refresh NERDTree icons after sourced ~/.vimrc
