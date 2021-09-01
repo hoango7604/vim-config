@@ -8,6 +8,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 " NERDTree (directory tree)
 Plug 'preservim/nerdtree'
+" NERDTree icons
+Plug 'ryanoasis/vim-devicons'
+" NERDTree icons colors
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Support git action
 Plug 'tpope/vim-fugitive'
 " Extension for vim-fugitive to show commit message directly
@@ -86,7 +90,7 @@ Plug 'puremourning/vimspector'
 " Collection of language pack
 Plug 'sheerun/vim-polyglot'
 " Support javascript syntax highlighting and autosuggestion
-" Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 " Support writing doc for js file
 Plug 'heavenshell/vim-jsdoc', {
       \ 'for': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'],

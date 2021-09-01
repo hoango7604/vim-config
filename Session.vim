@@ -25,11 +25,9 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 189 + 95) / 191)
-exe 'vert 2resize ' . ((&columns * 0 + 95) / 191)
-exe 'vert 3resize ' . ((&columns * 0 + 95) / 191)
+wincmd =
 argglobal
-balt configs/03.plugins-setting.vim
+balt configs/02.settings.vim
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -44,33 +42,12 @@ let s:l = 1 - ((0 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
-normal! 0
+keepjumps 12
+normal! 017|
 lcd ~/.config/nvim
 wincmd w
 argglobal
 if bufexists("~/.config/nvim/configs/02.settings.vim") | buffer ~/.config/nvim/configs/02.settings.vim | else | edit ~/.config/nvim/configs/02.settings.vim | endif
-balt ~/.config/nvim/configs/03.plugins-setting.vim
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 95 - ((37 * winheight(0) + 24) / 48)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 95
-normal! 010|
-lcd ~/.config/nvim
-wincmd w
-argglobal
-if bufexists("~/.config/nvim/configs/03.plugins-setting.vim") | buffer ~/.config/nvim/configs/03.plugins-setting.vim | else | edit ~/.config/nvim/configs/03.plugins-setting.vim | endif
 balt ~/.config/nvim/configs/01.plugins.vim
 setlocal fdm=manual
 setlocal fde=0
@@ -82,11 +59,32 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 442 - ((23 * winheight(0) + 24) / 48)
+let s:l = 8 - ((7 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 442
+keepjumps 8
+normal! 0
+lcd ~/.config/nvim
+wincmd w
+argglobal
+if bufexists("~/.config/nvim/configs/03.plugins-setting.vim") | buffer ~/.config/nvim/configs/03.plugins-setting.vim | else | edit ~/.config/nvim/configs/03.plugins-setting.vim | endif
+balt ~/.config/nvim/configs/02.settings.vim
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 602 - ((27 * winheight(0) + 25) / 51)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 602
 normal! 024|
 lcd ~/.config/nvim
 wincmd w
@@ -94,9 +92,11 @@ exe 'vert 1resize ' . ((&columns * 189 + 95) / 191)
 exe 'vert 2resize ' . ((&columns * 0 + 95) / 191)
 exe 'vert 3resize ' . ((&columns * 0 + 95) / 191)
 tabnext 1
-badd +1 ~/.config/nvim/configs/01.plugins.vim
-badd +1 ~/.config/nvim/configs/03.plugins-setting.vim
-badd +0 ~/.config/nvim/configs/02.settings.vim
+badd +14 ~/.config/nvim/configs/01.plugins.vim
+badd +602 ~/.config/nvim/configs/03.plugins-setting.vim
+badd +8 ~/.config/nvim/configs/02.settings.vim
+badd +1 ~/.config/nvim/.gitignore
+badd +0 ~/.config/nvim/init.vim
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
