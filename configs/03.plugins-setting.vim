@@ -92,98 +92,14 @@ command Q call TabCloseLeft('q!')
 " override default quit command
 cabbrev q <c-r>=(getcmdtype()==':' && getcmdpos()==1 ? 'Q' : 'q')<CR>
 
-" Files + devicons
-function! FilesWithDevIcons()
-  let l:fzf_files_options = ' -m --preview "bat --color always --style numbers {2..}"'
-
-  function! s:files()
-    let l:files = split(system($FZF_DEFAULT_COMMAND), '\n')
-    return s:prepend_icon(l:files)
-  endfunction
-
-  function! s:prepend_icon(candidates)
-    let result = []
-    for candidate in a:candidates
-      let filename = fnamemodify(candidate, ':p:t')
-      let icon = WebDevIconsGetFileTypeSymbol(filename, isdirectory(filename))
-      call add(result, printf("%s %s", icon, candidate))
-    endfor
-
-    return result
-  endfunction
-
-  function! s:edit_file(items)
-    let items = a:items
-    let i = 1
-    let ln = len(items)
-    while i < ln
-      let item = items[i]
-      let parts = split(item, ' ')
-      let file_path = get(parts, 1, '')
-      let items[i] = file_path
-      let i += 1
-    endwhile
-    call s:Sink(items)
-  endfunction
-
-  let opts = fzf#wrap({})
-  let opts.source = <sid>files()
-  let s:Sink = opts['sink*']
-  let opts['sink*'] = function('s:edit_file')
-  let opts.options .= l:fzf_files_options
-  call fzf#run(opts)
-endfunction
-
-" GFiles + devicons
-function! GFilesWithDevIcons()
-  let l:fzf_files_options = ' -m --preview "bat --color always --style numbers {2..}"'
-
-  function! s:files()
-    let l:files = split(system("git ls-files | uniq"), '\n')
-    return s:prepend_icon(l:files)
-  endfunction
-
-  function! s:prepend_icon(candidates)
-    let result = []
-    for candidate in a:candidates
-      let filename = fnamemodify(candidate, ':p:t')
-      let icon = WebDevIconsGetFileTypeSymbol(filename, isdirectory(filename))
-      call add(result, printf("%s %s", icon, candidate))
-    endfor
-
-    return result
-  endfunction
-
-  function! s:edit_file(items)
-    let items = a:items
-    let i = 1
-    let ln = len(items)
-    while i < ln
-      let item = items[i]
-      let parts = split(item, ' ')
-      let file_path = get(parts, 1, '')
-      let items[i] = file_path
-      let i += 1
-    endwhile
-    call s:Sink(items)
-  endfunction
-
-  let opts = fzf#wrap({})
-  let opts.source = <sid>files()
-  let s:Sink = opts['sink*']
-  let opts['sink*'] = function('s:edit_file')
-  let opts.options .= l:fzf_files_options
-  call fzf#run(opts)
-endfunction
-
 " Shortkey for plugins operations on buffer
 nnoremap <silent> <leader>un :UndotreeShow<CR>
 nnoremap <silent> <C-b> :NERDTreeToggle<CR>
 nnoremap <silent> <leader>bs :NERDTreeFocus<CR>
 nnoremap <silent> <C-f> :NERDTreeFind<CR>
-nnoremap gb :Gblame<CR>
-nnoremap <leader>o :call FilesWithDevIcons()<CR>
-nnoremap <leader>O :call GFilesWithDevIcons()<CR>
+nnoremap <silent> gb :Git blame<CR>
+nnoremap <leader>o :Files<CR>
+nnoremap <leader>O :GFiles<CR>
 nnoremap <silent> <leader>= :vertical resize +5<CR>
 nnoremap <silent> <leader>- :vertical resize -5<CR>
 nnoremap <silent> <leader>. :resize +5<CR>
@@ -220,28 +136,25 @@ nmap <silent> gim <plug>(coc-implementation)
 nmap <silent> gr <plug>(coc-references)
 nmap <silent> ge <plug>(coc-rename)
 nmap <silent> gl :<C-u>CocList diagnostics<CR>
-nmap <silent> g[ <plug>(coc-diagnostic-prev)zz
-nmap <silent> g] <plug>(coc-diagnostic-next)zz
-nmap <silent> [g <plug>(coc-diagnostic-prev-error)zz
-nmap <silent> ]g <plug>(coc-diagnostic-next-error)zz
+nmap <silent> [w <plug>(coc-diagnostic-prev)zz
+nmap <silent> ]w <plug>(coc-diagnostic-next)zz
+nmap <silent> [e <plug>(coc-diagnostic-prev-error)zz
+nmap <silent> ]e <plug>(coc-diagnostic-next-error)zz
 nmap <silent> gs :CocRestart<Cr>
 nmap <leader>a <plug>(coc-codeaction)
 
 " coc.nvim extensions list
 let g:coc_global_extensions = [
       \ 'coc-vimlsp',
-      \ 'coc-highlight',
       \ 'coc-clangd',
       \ 'coc-eslint',
       \ 'coc-tsserver',
       \ 'coc-sh',
-      \ 'coc-omnisharp',
       \ 'coc-json',
       \ 'coc-html',
       \ 'coc-css',
       \ 'coc-git',
       \ 'coc-go',
-      \ 'coc-snippets'
       \ ]
 
 " Coc-snippets
@@ -558,7 +471,7 @@ let g:vimspector_install_gadgets = [
 
 " vim-flog remapping
 nmap <silent> <leader>G :Flog<CR>
-nmap <silent> <leader>S :tabnew<Bar>:Gstatus<Bar>:only<CR>
+nmap <silent> <leader>S :tabnew<Bar>:Git<Bar>:only<CR>
 nmap <silent> yg <Plug>(FlogYank)
 
 " Prettify git log graph by using git-forest
@@ -593,9 +506,9 @@ let g:LargeFile = 1
 let g:obsession_no_bufenter = 1
 
 " Refresh NERDTree icons after sourced ~/.vimrc
-if exists("g:loaded_webdevicons")
-  call webdevicons#refresh()
-endif
+" if exists("g:loaded_webdevicons")
+"   call webdevicons#refresh()
+" endif
 
 " Reduce lagging issue
 let g:NERDTreeLimitedSyntax = 1

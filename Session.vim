@@ -25,9 +25,11 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-wincmd =
+exe 'vert 1resize ' . ((&columns * 63 + 95) / 191)
+exe 'vert 2resize ' . ((&columns * 63 + 95) / 191)
+exe 'vert 3resize ' . ((&columns * 63 + 95) / 191)
 argglobal
-balt configs/02.settings.vim
+balt configs/03.plugins-setting.vim
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -38,12 +40,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+let s:l = 1 - ((0 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 12
-normal! 017|
+keepjumps 1
+normal! 0
 lcd ~/.config/nvim
 wincmd w
 argglobal
@@ -56,20 +58,20 @@ setlocal fdi=#
 setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
-setlocal fen
+setlocal nofen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 8 - ((7 * winheight(0) + 25) / 51)
+let s:l = 156 - ((45 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 8
+keepjumps 156
 normal! 0
 lcd ~/.config/nvim
 wincmd w
 argglobal
 if bufexists("~/.config/nvim/configs/03.plugins-setting.vim") | buffer ~/.config/nvim/configs/03.plugins-setting.vim | else | edit ~/.config/nvim/configs/03.plugins-setting.vim | endif
-balt ~/.config/nvim/configs/02.settings.vim
+balt ~/.config/nvim/configs/01.plugins.vim
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -77,26 +79,27 @@ setlocal fdi=#
 setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
-setlocal fen
+setlocal nofen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 602 - ((27 * winheight(0) + 25) / 51)
+let s:l = 510 - ((25 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 602
-normal! 024|
+keepjumps 510
+normal! 07|
 lcd ~/.config/nvim
 wincmd w
-exe 'vert 1resize ' . ((&columns * 189 + 95) / 191)
-exe 'vert 2resize ' . ((&columns * 0 + 95) / 191)
-exe 'vert 3resize ' . ((&columns * 0 + 95) / 191)
+3wincmd w
+exe 'vert 1resize ' . ((&columns * 63 + 95) / 191)
+exe 'vert 2resize ' . ((&columns * 63 + 95) / 191)
+exe 'vert 3resize ' . ((&columns * 63 + 95) / 191)
 tabnext 1
-badd +14 ~/.config/nvim/configs/01.plugins.vim
-badd +602 ~/.config/nvim/configs/03.plugins-setting.vim
-badd +8 ~/.config/nvim/configs/02.settings.vim
-badd +1 ~/.config/nvim/.gitignore
-badd +0 ~/.config/nvim/init.vim
+badd +1 ~/.config/nvim/configs/01.plugins.vim
+badd +0 ~/.config/nvim/configs/03.plugins-setting.vim
+badd +117 ~/.config/nvim/configs/02.settings.vim
+badd +1 ~/.config/nvim/Session.vim
+badd +1 ~/.config/nvim/coc-settings.json
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif

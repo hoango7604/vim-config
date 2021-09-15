@@ -5,13 +5,13 @@ call plug#begin('~/.vim/plugged')
 " Intellisense engine, full language server protocol support as VSCode
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Support snippets for coc-snippets
-Plug 'honza/vim-snippets'
+" Plug 'honza/vim-snippets'
 " NERDTree (directory tree)
 Plug 'preservim/nerdtree'
 " NERDTree icons
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 " NERDTree icons colors
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Support git action
 Plug 'tpope/vim-fugitive'
 " Extension for vim-fugitive to show commit message directly
@@ -48,7 +48,8 @@ Plug 'Asheq/close-buffers.vim'
 " Helper for swapping buffers
 Plug 'wesQ3/vim-windowswap'
 " Jump to places in text editor quickly
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
+Plug 'aelkazdadi/vim-easymotion', { 'branch': 'fast-hl' }
 " Extend default search function in vim
 Plug 'haya14busa/incsearch.vim'
 " Extension for incsearch.vim to operate fuzzy search

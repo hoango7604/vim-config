@@ -154,5 +154,8 @@ vnoremap K :m '<-2<CR>gv=gv
 " Only show filename when pressing <C-g>
 nnoremap <C-g> :echo @%<CR>
 
-" Maaping for 'paste' option
+" Mapping for 'paste' option
 nnoremap <silent> <leader>sp :if &paste <Bar> set nopaste <Bar> else <Bar> set paste <Bar> endif <CR>
+
+" Copy all content of the file to clipboard
+nmap ya :%y+<CR>
