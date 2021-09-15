@@ -2,14 +2,18 @@
 call plug#begin('~/.vim/plugged')
 
 " --- Plugins for editors (IDE)
-" LSP
-Plug 'neovim/nvim-lspconfig'
-Plug 'glepnir/lspsaga.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-Plug 'nvim-lua/completion-nvim'
+" Intellisense engine, full language server protocol support as VSCode
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Support snippets for coc-snippets
+" Plug 'honza/vim-snippets'
+" NERDTree (directory tree)
+Plug 'preservim/nerdtree'
+" NERDTree icons
+" Plug 'ryanoasis/vim-devicons'
+" NERDTree icons colors
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Support git action
 Plug 'tpope/vim-fugitive'
-Plug 'cohama/lexima.vim'
 " Extension for vim-fugitive to show commit message directly
 Plug 'tommcdo/vim-fugitive-blame-ext'
 " Git branch viewer integrates with fugitive
@@ -19,6 +23,8 @@ Plug 'TamaMcGlinn/vim-flog', { 'branch': 'feature/quick_navigate' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Support Fzf to fully operate inside vim
 Plug 'junegunn/fzf.vim'
+" Helper for using grep tool and quickfix list (to refactor code across files)
+Plug 'mhinz/vim-grepper'
 " Extend default % in vim to match html tag and so on
 Plug 'andymass/vim-matchup'
 " Quickly add comment string
@@ -29,14 +35,21 @@ Plug 'suy/vim-context-commentstring'
 Plug 'tpope/vim-surround'
 " Quickly add surrounding in pairs
 Plug 'jiangmiao/auto-pairs'
+" Fade inactive buffers text to help focus on currently working buffer
+Plug 'TaDaa/vimade'
+" Enhance vim FocusGained and FocusLost events for autocommand
+Plug 'tmux-plugins/vim-tmux-focus-events'
 " Auto close XHTML tag
 Plug 'alvan/vim-closetag'
+" Smart compose for code completion
+Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 " Helper for closing buffers
 Plug 'Asheq/close-buffers.vim'
 " Helper for swapping buffers
 Plug 'wesQ3/vim-windowswap'
 " Jump to places in text editor quickly
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
+Plug 'aelkazdadi/vim-easymotion', { 'branch': 'fast-hl' }
 " Extend default search function in vim
 Plug 'haya14busa/incsearch.vim'
 " Extension for incsearch.vim to operate fuzzy search
@@ -47,6 +60,8 @@ Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'romainl/vim-cool'
 " Split join line/multiple lines
 Plug 'AndrewRadev/splitjoin.vim'
+" Maximize working buffer
+Plug 'szw/vim-maximizer'
 " Working with large file
 Plug 'vim-scripts/LargeFile'
 
@@ -55,8 +70,6 @@ Plug 'vim-scripts/LargeFile'
 Plug 'gruvbox-community/gruvbox'
 " Modification of gruvbox theme to make color scheme smoothier
 Plug 'sainnhe/gruvbox-material'
-" NERDTree (directory tree)
-Plug 'preservim/nerdtree'
 " Status bar
 Plug 'vim-airline/vim-airline'
 " Tab bar
@@ -65,17 +78,29 @@ Plug 'mkitt/tabline.vim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 " Highlight indent levels
 Plug 'Yggdroot/indentLine'
-" Fade inactive buffers text to help focus on currently working buffer
-Plug 'TaDaa/vimade'
-" Enhance vim FocusGained and FocusLost events for autocommand
-Plug 'tmux-plugins/vim-tmux-focus-events'
-" Maximize working buffer
-Plug 'szw/vim-maximizer'
 
+" --- Other plugins
+" Language server protocol for vim language
+Plug 'prabirshrestha/vim-lsp'
 " Support session in vim
 Plug 'tpope/vim-obsession'
 " Inspector in vim
 Plug 'puremourning/vimspector'
+
+" --- Plugins for language support
+" Collection of language pack
+Plug 'sheerun/vim-polyglot'
+" Support javascript syntax highlighting and autosuggestion
+Plug 'pangloss/vim-javascript'
+" Support writing doc for js file
+Plug 'heavenshell/vim-jsdoc', {
+      \ 'for': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'],
+      \ 'do': 'make install'
+      \}
+" Jsx prettier
+Plug 'maxmellon/vim-jsx-pretty'
+" JSON syntax
+Plug 'kevinoid/vim-jsonc'
 " Calculate import size
 Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 

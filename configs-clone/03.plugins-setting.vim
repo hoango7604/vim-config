@@ -412,9 +412,9 @@ let g:vimade = {
       \ }
 
 " Enhancement for FocusGained & FocusLost events in vimade
-" if has('gui_running') == 0 && has('nvim') == 0
-"   call feedkeys(":silent execute '!' | redraw!\<CR>")
-" endif
+if has('gui_running') == 0 && has('nvim') == 0
+  call feedkeys(":silent execute '!' | redraw!\<CR>")
+endif
 
 " Remapping splitjoin.vim
 let g:splitjoin_split_mapping = ''
