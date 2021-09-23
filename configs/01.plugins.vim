@@ -67,8 +67,6 @@ Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'Yggdroot/indentLine'
 " Fade inactive buffers text to help focus on currently working buffer
 Plug 'TaDaa/vimade'
-" Enhance vim FocusGained and FocusLost events for autocommand
-Plug 'tmux-plugins/vim-tmux-focus-events'
 " Maximize working buffer
 Plug 'szw/vim-maximizer'
 
