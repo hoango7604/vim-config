@@ -31,14 +31,12 @@ Plug 'andymass/vim-matchup'
 Plug 'tpope/vim-commentary'
 " Extension for vim-commentary to find matching syntax on difference files
 Plug 'suy/vim-context-commentstring'
-" Provide mapping to easily delete, chnge and add surrounding in pairs
+" Provide mapping to easily delete, change and add surrounding in pairs
 Plug 'tpope/vim-surround'
 " Quickly add surrounding in pairs
 Plug 'jiangmiao/auto-pairs'
 " Fade inactive buffers text to help focus on currently working buffer
 Plug 'TaDaa/vimade'
-" Enhance vim FocusGained and FocusLost events for autocommand
-Plug 'tmux-plugins/vim-tmux-focus-events'
 " Auto close XHTML tag
 Plug 'alvan/vim-closetag'
 " Smart compose for code completion
@@ -76,8 +74,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'mkitt/tabline.vim'
 " Display colours prettier than default
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
-" Highlight indent levels
-Plug 'Yggdroot/indentLine'
 
 " --- Other plugins
 " Language server protocol for vim language
@@ -91,12 +87,7 @@ Plug 'puremourning/vimspector'
 " Collection of language pack
 Plug 'sheerun/vim-polyglot'
 " Support javascript syntax highlighting and autosuggestion
-Plug 'pangloss/vim-javascript'
-" Support writing doc for js file
-Plug 'heavenshell/vim-jsdoc', {
-      \ 'for': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'],
-      \ 'do': 'make install'
-      \}
+" Plug 'pangloss/vim-javascript'
 " Jsx prettier
 Plug 'maxmellon/vim-jsx-pretty'
 " JSON syntax
