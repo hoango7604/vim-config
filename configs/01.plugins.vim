@@ -5,8 +5,10 @@ call plug#begin('~/.vim/plugged')
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'glepnir/lspsaga.nvim'
+Plug 'hrsh7th/nvim-compe'
+Plug 'tzachar/compe-tabnine', { 'do': './install.sh' }
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-Plug 'nvim-lua/completion-nvim'
+" Plug 'nvim-lua/completion-nvim'
 " Support git action
 Plug 'tpope/vim-fugitive'
 Plug 'cohama/lexima.vim'
@@ -65,8 +67,6 @@ Plug 'mkitt/tabline.vim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 " Highlight indent levels
 Plug 'Yggdroot/indentLine'
-" Fade inactive buffers text to help focus on currently working buffer
-Plug 'TaDaa/vimade'
 " Maximize working buffer
 Plug 'szw/vim-maximizer'
 
@@ -75,6 +75,6 @@ Plug 'tpope/vim-obsession'
 " Inspector in vim
 Plug 'puremourning/vimspector'
 " Calculate import size
-Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
+" Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
 
 call plug#end()

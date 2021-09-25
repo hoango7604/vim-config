@@ -50,33 +50,6 @@ let g:NERDTreeShowLineNumbers = 1
 " Show hidden files and folders on NERDTree
 let g:NERDTreeShowHidden = 1
 
-" --- Completion
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your conig.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-k> to trigger completion.
-inoremap <silent><expr> <c-k> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
 " declare function for moving left when closing a tab.
 function! TabCloseLeft(cmd)
   if ((winnr('$') == 1 && a:cmd == "q!") || a:cmd != "q!") && tabpagenr('$') > 1 && tabpagenr() > 1 && tabpagenr() < tabpagenr('$')
@@ -106,13 +79,11 @@ nnoremap <silent> <leader>. :resize +5<CR>
 nnoremap <silent> <leader>, :resize -5<CR>
 nnoremap <leader>ss :so ~/.vimrc<CR>
 nnoremap <leader>w :w<CR>
-nnoremap <leader>q :Q<CR>
 nnoremap gq :Q<CR>
 nnoremap <leader>xo :only<CR>
 nnoremap <leader>xx :call TabCloseLeft('tabclose!')<CR>
 nnoremap <leader>xb :Bdelete menu<CR>
 nnoremap <leader>nt :tabnew<CR>
-nnoremap <C-a> :CocList commands<CR>
 nnoremap <leader>bb :Buffers<CR>
 nnoremap <leader>br :checktime<CR>
 nnoremap <leader>so :set so=10<CR>
@@ -126,56 +97,11 @@ nnoremap <leader>U :PlugUpdate<CR>
 nnoremap <silent> <leader>th :tabmove -1<CR>
 nnoremap <silent> <leader>tl :tabmove +1<CR>
 
-" coc.nvim remappings
-nmap <silent> gd <plug>(coc-definition)zz
-nmap <silent> gx :sp<CR><plug>(coc-definition)zz
-nmap <silent> gv :vsp<CR><plug>(coc-definition)zz
-nmap <silent> gnt :vsp<CR><plug>(coc-definition)<C-W>Tzz
-nmap <silent> gy <plug>(coc-type-definition)
-nmap <silent> gim <plug>(coc-implementation)
-nmap <silent> gr <plug>(coc-references)
-nmap <silent> ge <plug>(coc-rename)
-nmap <silent> gl :<C-u>CocList diagnostics<CR>
-nmap <silent> [w <plug>(coc-diagnostic-prev)zz
-nmap <silent> ]w <plug>(coc-diagnostic-next)zz
-nmap <silent> [e <plug>(coc-diagnostic-prev-error)zz
-nmap <silent> ]e <plug>(coc-diagnostic-next-error)zz
-nmap <silent> gs :CocRestart<Cr>
-nmap <leader>a <plug>(coc-codeaction)
-
-" coc.nvim extensions list
-let g:coc_global_extensions = [
-      \ 'coc-vimlsp',
-      \ 'coc-clangd',
-      \ 'coc-eslint',
-      \ 'coc-tsserver',
-      \ 'coc-sh',
-      \ 'coc-json',
-      \ 'coc-html',
-      \ 'coc-css',
-      \ 'coc-git',
-      \ 'coc-go',
-      \ ]
-
-" Coc-snippets
-imap <C-l> <Plug>(coc-snippets-expand)
-vmap <C-j> <Plug>(coc-snippets-select)
-
-let g:coc_snippet_next = '<c-j>'
-let g:coc_snippet_prev = '<c-k>'
-
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-xmap <leader>sn <Plug>(coc-convert-snipper)
-
 " quickfix mappings
-nmap <silent> <leader>co :copen<CR>
-nmap <silent> <leader>cl :cclose<CR>
-nmap <silent> <leader>cn :cnext<CR>
-nmap <silent> <leader>cp :cprev<CR>
-nmap <silent> <leader>bo :lopen<CR>
-nmap <silent> <leader>bl :lclose<CR>
-nmap <silent> <leader>bn :lnext<CR>
-nmap <silent> <leader>bp :lprev<CR>
+nmap <silent> co :copen<CR>
+nmap <silent> cl :cclose<CR>
+nmap <silent> cn :cnext<CR>
+nmap <silent> cp :cprev<CR>
 
 " Search among files with the matching phrase
 nnoremap <leader>f :Rg<Space>
@@ -185,57 +111,6 @@ xmap <leader>f
       \ :Rg <C-r>f<CR>
 " Open recent search popup
 nnoremap <leader>F :Rg <C-r>f<CR>
-
-" --- Autolint command
-command! -nargs=0 ExecuteAutoLint
-      \ :call CocActionAsync('runCommand', 'eslint.executeAutofix')
-nmap gf :ExecuteAutoLint<CR>
-
-" --- Show document
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Use K to show documentation in preview window.
-nmap <silent> K :call <SID>show_documentation()<CR>
-
-" Scroll when document popup opened by Shift-K
-function FindCursorPopUp()
-  let radius = get(a:000, 0, 2)
-  let srow = screenrow()
-  let scol = screencol()
-  " it's necessary to test entire rect, as some popup might be quite small
-  for r in range(srow - radius, srow + radius)
-    for c in range(scol - radius, scol + radius)
-      let winid = popup_locate(r, c)
-      if winid != 0
-        return winid
-      endif
-    endfor
-  endfor
-
-  return 0
-endfunction
-
-function ScrollPopUp(down)
-  let winid = FindCursorPopUp()
-  if winid == 0
-    return 0
-  endif
-
-  let pp = popup_getpos(winid)
-  call popup_setoptions( winid,
-        \ {'firstline' : pp.firstline + ( a:down ? 1 : -1 ) } )
-
-  return 1
-endfunction
-
-nnoremap <expr> <c-j> ScrollPopUp(1) ? '<esc>' : '<c-j>'
-nnoremap <expr> <c-k> ScrollPopUp(0) ? '<esc>' : '<c-k>'
 
 " --- Git mergetool
 nnoremap gmi :diffget REMOTE<Bar>diffupdate<CR>
@@ -306,13 +181,6 @@ let g:matchup_matchpref = {
       \ 'javascript': { 'tagnameonly': 1, },
       \ 'jsx': { 'tagnameonly': 1, },
       \}
-
-" let b:match_words = 1
-
-" --- Folding
-command! -nargs=0 Fold
-      \ :call CocActionAsync('fold')
-nnoremap <leader>bf :Fold<CR>
 
 " --- vim-easymotion
 " Use uppercase target labels and type as a lower case
@@ -497,7 +365,7 @@ let g:flog_build_log_command_fn = 'FlogBuildLog'
 
 " Compile cpp file using g++
 nmap g++ :!g++ -std=c++14 -O2 -Wall main.cpp -o main && ./main<CR>
-nmap cpp :!./main<CR>
+nmap <leader>cp :!./main<CR>
 
 " Change default minimum size of a file to be considered as a 'LargeFile'
 let g:LargeFile = 1
@@ -567,17 +435,11 @@ autocmd User FugitiveIndex nmap <buffer> s <plug>(easymotion-s2)
 autocmd FileType git set foldmethod=syntax
 
 " Automatically run vim-import-cost
-if has('nvim')
-  augroup import_cost_auto_run
-    autocmd!
-    autocmd InsertLeave *.js,*.jsx,*.ts,*.tsx ImportCost
-    autocmd BufEnter *.js,*.jsx,*.ts,*.tsx ImportCost
-    autocmd CursorHold *.js,*.jsx,*.ts,*.tsx ImportCost
-  augroup END
-endif
-
-" Temporarily disable Coc when using easymotion (only when using neovim)
-if has('nvim')
-  autocmd User EasyMotionPromptBegin silent! CocDisable
-  autocmd User EasyMotionPromptEnd silent! CocEnable
-endif
+" if has('nvim')
+"   augroup import_cost_auto_run
+"     autocmd!
+"     autocmd InsertLeave *.js,*.jsx,*.ts,*.tsx ImportCost
+"     autocmd BufEnter *.js,*.jsx,*.ts,*.tsx ImportCost
+"     autocmd CursorHold *.js,*.jsx,*.ts,*.tsx ImportCost
+"   augroup END
+" endif
