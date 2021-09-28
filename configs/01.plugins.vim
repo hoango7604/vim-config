@@ -5,13 +5,9 @@ call plug#begin('~/.vim/plugged')
 " Intellisense engine, full language server protocol support as VSCode
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Support snippets for coc-snippets
-" Plug 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 " NERDTree (directory tree)
 Plug 'preservim/nerdtree'
-" NERDTree icons
-" Plug 'ryanoasis/vim-devicons'
-" NERDTree icons colors
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " Support git action
 Plug 'tpope/vim-fugitive'
 " Extension for vim-fugitive to show commit message directly
@@ -35,19 +31,15 @@ Plug 'suy/vim-context-commentstring'
 Plug 'tpope/vim-surround'
 " Quickly add surrounding in pairs
 Plug 'jiangmiao/auto-pairs'
-" Fade inactive buffers text to help focus on currently working buffer
-Plug 'TaDaa/vimade'
 " Auto close XHTML tag
 Plug 'alvan/vim-closetag'
-" Smart compose for code completion
-Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 " Helper for closing buffers
 Plug 'Asheq/close-buffers.vim'
 " Helper for swapping buffers
 Plug 'wesQ3/vim-windowswap'
 " Jump to places in text editor quickly
-" Plug 'easymotion/vim-easymotion'
 Plug 'aelkazdadi/vim-easymotion', { 'branch': 'fast-hl' }
+" Plug 'easymotion/vim-easymotion'
 " Extend default search function in vim
 Plug 'haya14busa/incsearch.vim'
 " Extension for incsearch.vim to operate fuzzy search
@@ -76,8 +68,6 @@ Plug 'mkitt/tabline.vim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
 " --- Other plugins
-" Language server protocol for vim language
-Plug 'prabirshrestha/vim-lsp'
 " Support session in vim
 Plug 'tpope/vim-obsession'
 " Inspector in vim
@@ -86,13 +76,7 @@ Plug 'puremourning/vimspector'
 " --- Plugins for language support
 " Collection of language pack
 Plug 'sheerun/vim-polyglot'
-" Support javascript syntax highlighting and autosuggestion
-" Plug 'pangloss/vim-javascript'
-" Jsx prettier
-Plug 'maxmellon/vim-jsx-pretty'
-" JSON syntax
-Plug 'kevinoid/vim-jsonc'
-" Calculate import size
-Plug 'yardnsm/vim-import-cost', { 'do': 'npm install' }
+" Styled-components syntax highlighting
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 call plug#end()

@@ -29,7 +29,6 @@ set nu
 set nowrap
 set noswapfile
 set undodir=~/.vim/undodir
-set undofile
 set incsearch
 set termguicolors
 
@@ -73,7 +72,7 @@ set signcolumn=yes
 set guicursor+=a:blinkon0
 
 " Using block cursor in insert mode (in neovim)
-set guicursor+=i:block
+set guicursor+=a:block
 
 " Use UTF-8 as the default encoding
 set encoding=UTF-8

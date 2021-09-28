@@ -135,7 +135,8 @@ nmap <silent> gy <plug>(coc-type-definition)
 nmap <silent> gim <plug>(coc-implementation)
 nmap <silent> gr <plug>(coc-references)
 nmap <silent> ge <plug>(coc-rename)
-nmap <silent> gl :<C-u>CocList diagnostics<CR>
+nmap gl :tabedit<bar>Git log --patch -- <bar>only<Left><Left><Left><Left><Left>
+nmap gL :tabedit<bar>Git log --patch -- <C-R>%<bar>only<CR>
 nmap <silent> [w <plug>(coc-diagnostic-prev)zz
 nmap <silent> ]w <plug>(coc-diagnostic-next)zz
 nmap <silent> [e <plug>(coc-diagnostic-prev-error)zz
@@ -145,16 +146,20 @@ nmap <leader>a <plug>(coc-codeaction)
 
 " coc.nvim extensions list
 let g:coc_global_extensions = [
-      \ 'coc-vimlsp',
       \ 'coc-clangd',
-      \ 'coc-eslint',
-      \ 'coc-tsserver',
-      \ 'coc-sh',
-      \ 'coc-json',
-      \ 'coc-html',
       \ 'coc-css',
+      \ 'coc-eslint',
+      \ 'coc-fzf-preview',
       \ 'coc-git',
       \ 'coc-go',
+      \ 'coc-html',
+      \ 'coc-json',
+      \ 'coc-markdown-preview-enhanced',
+      \ 'coc-sh',
+      \ 'coc-snippets',
+      \ 'coc-tabnine',
+      \ 'coc-tsserver',
+      \ 'coc-webview',
       \ ]
 
 " Coc-snippets
@@ -164,18 +169,11 @@ vmap <C-j> <Plug>(coc-snippets-select)
 let g:coc_snippet_next = '<c-j>'
 let g:coc_snippet_prev = '<c-k>'
 
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-xmap <leader>sn <Plug>(coc-convert-snipper)
-
 " quickfix mappings
-nmap <silent> <leader>co :copen<CR>
-nmap <silent> <leader>cl :cclose<CR>
-nmap <silent> <leader>cn :cnext<CR>
-nmap <silent> <leader>cp :cprev<CR>
-nmap <silent> <leader>bo :lopen<CR>
-nmap <silent> <leader>bl :lclose<CR>
-nmap <silent> <leader>bn :lnext<CR>
-nmap <silent> <leader>bp :lprev<CR>
+nmap <silent> co :copen<CR>
+nmap <silent> cl :cclose<CR>
+nmap <silent> cn :cnext<CR>
+nmap <silent> cp :cprev<CR>
 
 " Search among files with the matching phrase
 nnoremap <leader>f :Rg<Space>
@@ -557,7 +555,7 @@ autocmd FileType floggraph nmap <buffer> <silent> yy <Plug>(FlogYank)<Bar>:call 
 autocmd FileType floggraph vmap <buffer> <silent> yy <Plug>(FlogYank)<Bar>:call setreg('*', @")<CR>
 
 " Enhancement for vim-fugitive diff mappings
-autocmd User FugitiveIndex nmap <buffer> O :Gtabedit <Plug><cfile><Bar>:Gvdiffsplit<CR>
+autocmd User FugitiveIndex nmap <buffer> O :tabedit <Plug><cfile><Bar>:Gvdiffsplit<CR>
 
 " Remap s in buffer when using :GStatus to easymotion sneak (since I don't
 " use :Git command in vim-fugitive)
@@ -565,16 +563,8 @@ autocmd User FugitiveIndex nmap <buffer> s <plug>(easymotion-s2)
 
 " Auto fold on git commit buffer
 autocmd FileType git set foldmethod=syntax
-
-" Automatically run vim-import-cost
-if has('nvim')
-  augroup import_cost_auto_run
-    autocmd!
-    autocmd InsertLeave *.js,*.jsx,*.ts,*.tsx ImportCost
-    autocmd BufEnter *.js,*.jsx,*.ts,*.tsx ImportCost
-    autocmd CursorHold *.js,*.jsx,*.ts,*.tsx ImportCost
-  augroup END
-endif
+autocmd FileType git nmap <buffer> <silent> ]c ]m
+autocmd FileType git nmap <buffer> <silent> [c [m
 
 " Temporarily disable Coc when using easymotion (only when using neovim)
 if has('nvim')
