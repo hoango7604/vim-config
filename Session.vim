@@ -37,8 +37,10 @@ normal! zt
 keepjumps 1
 normal! 0
 tabnext 1
+badd +0 configs/01.plugins.vim
 badd +1 README.md
-badd +1 configs/01.plugins.vim
+badd +1 configs/02.settings.vim
+badd +1 configs/03.plugins-setting.vim
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif

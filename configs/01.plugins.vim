@@ -76,7 +76,5 @@ Plug 'puremourning/vimspector'
 " --- Plugins for language support
 " Collection of language pack
 Plug 'sheerun/vim-polyglot'
-" Styled-components syntax highlighting
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 call plug#end()
