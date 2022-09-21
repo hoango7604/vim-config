@@ -44,7 +44,7 @@ Open *vim* (just ignore all errors being shown for now):
 vim
 ```
 
-Using command __*:PlugInstall*__ (or __*\<leader\> + in*__ for shortcut) to install vim plugins:
+Using command __*:PlugInstall*__ (or __*\<leader\> + I*__ for shortcut) to install vim plugins:
 ![install-vim-plugins](./screenshots/install-vim-plugins.png)
 
 That's all. Easy to setup and now you're ready for an exciting journey into the *VIM* world!

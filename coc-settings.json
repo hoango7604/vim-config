@@ -4,7 +4,6 @@
   "diagnostic.enableSign": true,
   "diagnostic.enableMessage": "jump",
   "suggest.autoTrigger": "always",
-  "suggest.enablePreview": true,
   "suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
     "variable": "\ue79b",
@@ -32,35 +31,26 @@
     "typeParameter": "\uf728",
     "default": "\uf29c"
   },
-  "highlight.colors.enable": false,
+  "git.changedSign.hlGroup": "PreProc",
+  "git.addedSign.hlGroup": "String",
+  "git.removedSign.hlGroup": "Identifier",
+  "git.topRemovedSign.hlGroup": "Identifier",
+  "git.changeRemovedSign.hlGroup": "PreProc",
+  "git.conflict.current.hlGroup": "Title",
+  "git.conflict.incoming.hlGroup": "WarningMsg",
   "snippets.extends": {
     "cpp": ["c"],
     "javascriptreact": ["javascript", "javascript-react", "javascript-jsdoc"],
     "typescript": ["javascript"],
     "typescriptreact": ["typescript", "javascript", "javascript-react", "javascript-jsdoc"]
   },
-  "clangd.path": "/Users/hoango7604/.config/coc/extensions/coc-clangd-data/install/12.0.0/clangd_12.0.0/bin/clangd",
+  "json.schemaDownload.enable": false,
   "languageserver": {
-    "ccls": {
-      "command": "ccls",
-      "filetypes": [
-        "c",
-        "cpp",
-        "objc",
-        "objcpp"
-      ],
-      "rootPatterns": [
-        ".ccls",
-        "compile_commands.json",
-        ".vim/",
-        ".git/",
-        ".hg/"
-      ],
-      "initializationOptions": {
-        "cache": {
-          "directory": "/tmp/ccls"
-        }
-      }
+    "lua": {
+      "command": "/Users/hoa/.common-config/lua-language-server/bin/lua-language-server",
+      "args": ["-E", "/Users/hoa/.common-config/lua-language-server/main.lua"],
+      "rootPatterns": [".git"],
+      "filetypes": ["lua"]
     }
   }
 }

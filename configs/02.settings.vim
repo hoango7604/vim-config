@@ -14,7 +14,7 @@ set nowritebackup
 set hidden
 set autoread
 
-" set noshowmatch
+set noshowmatch
 set hlsearch
 set noerrorbells
 set tabstop=2
@@ -31,6 +31,9 @@ set noswapfile
 set undodir=~/.vim/undodir
 set incsearch
 set termguicolors
+set guioptions-=L
+set completeopt=longest
+set pumheight=20
 
 " Always show tabline
 set showtabline=2
@@ -83,6 +86,9 @@ set scrolloff=10
 " Open git diff in vertical splits
 set diffopt+=vertical
 
+" Use mouse to interact with vim
+set mouse=a
+
 " Make sure spacebar doesn't have any mapping before hand
 nnoremap <Space> <Nop>
 let mapleader = " "
@@ -117,25 +123,29 @@ nnoremap <leader>[ qq
 nnoremap <leader><CR> @q
 
 " Shortkey navigating & copy paste
-nnoremap <leader>h <C-W>h
-nnoremap <leader>j <C-W>j
-nnoremap <leader>k <C-W>k
-nnoremap <leader>l <C-W>l
-nnoremap <leader>H <C-W>H
-nnoremap <leader>J <C-W>J
-nnoremap <leader>K <C-W>K
-nnoremap <leader>L <C-W>L
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <leader>H <C-w>H
+nnoremap <leader>J <C-w>J
+nnoremap <leader>K <C-w>K
+nnoremap <leader>L <C-w>L
 nnoremap <leader>y "*y
-nnoremap <leader>p "*p<Bar>:'[,']normal ==<CR>
+nnoremap <leader>p "*p
+" nnoremap <leader>p "*p<Bar>:'[,']normal ==<CR>
 nnoremap <leader>Y "+y
-nnoremap <leader>P "+p<Bar>:'[,']normal ==<CR>
-nnoremap p p<Bar>:'[,']normal ==<CR>
+nnoremap <leader>P "+p
+" nnoremap <leader>P "+p<Bar>:'[,']normal ==<CR>
+" nnoremap p p<Bar>:'[,']normal ==<CR>
 vnoremap <leader>y "*y
-vnoremap <leader>p "*p<Bar>:'[,']normal ==<CR>
+vnoremap <leader>p "*p
+" vnoremap <leader>p "*p<Bar>:'[,']normal ==<CR>
 vnoremap <leader>Y "+y
-vnoremap <leader>P "+p<Bar>:'[,']normal ==<CR>
-vnoremap p p<Bar>:'[,']normal ==<CR>
-nmap <leader>ts :tab split<CR>
+vnoremap <leader>P "+p
+" vnoremap <leader>P "+p<Bar>:'[,']normal ==<CR>
+" vnoremap p p<Bar>:'[,']normal ==<CR>
+nmap <leader>te :tab split<CR>
 nmap <leader>T :tabs<CR>
 
 " Search result should be scrolled to middle of the screen

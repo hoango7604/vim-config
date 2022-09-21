@@ -6,6 +6,13 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Support snippets for coc-snippets
 Plug 'honza/vim-snippets'
+" Icons
+Plug 'ryanoasis/vim-devicons'
+" NERDTree icon colors
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Status bar
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " NERDTree (directory tree)
 Plug 'preservim/nerdtree'
 " Support git action
@@ -13,12 +20,15 @@ Plug 'tpope/vim-fugitive'
 " Extension for vim-fugitive to show commit message directly
 Plug 'tommcdo/vim-fugitive-blame-ext'
 " Git branch viewer integrates with fugitive
-" Plug 'rbong/vim-flog'
-Plug 'TamaMcGlinn/vim-flog', { 'branch': 'feature/quick_navigate' }
+Plug 'rbong/vim-flog'
+" Plugin for vim-flog to navigate to parent/child commits
+Plug 'TamaMcGlinn/flog-navigate'
 " Support action on project (find text in files, open files, etc.)
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Support Fzf to fully operate inside vim
 Plug 'junegunn/fzf.vim'
+" Interaction with Coc easier when using FZF
+Plug 'antoinemadec/coc-fzf'
 " Helper for using grep tool and quickfix list (to refactor code across files)
 Plug 'mhinz/vim-grepper'
 " Extend default % in vim to match html tag and so on
@@ -55,15 +65,12 @@ Plug 'szw/vim-maximizer'
 " Working with large file
 Plug 'vim-scripts/LargeFile'
 
-" --- Plugins for theme and status line
+" --- Plugins for theme
 " Grubbox theme
 Plug 'gruvbox-community/gruvbox'
 " Modification of gruvbox theme to make color scheme smoothier
 Plug 'sainnhe/gruvbox-material'
-" Status bar
-Plug 'vim-airline/vim-airline'
-" Tab bar
-Plug 'mkitt/tabline.vim'
+Plug 'drewtempelmeyer/palenight.vim'
 " Display colours prettier than default
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
